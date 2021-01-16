@@ -73,11 +73,13 @@ public class Reaction extends AppCompatActivity {
             //myRef.child("comment").setValue("Did it work?");
             reactionRating = (SeekBar) findViewById(R.id.seekBar);
 
+        String comment = reactionText.getText().toString();
+
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
+        myRef.setValue(comment);
         }
 
     }
