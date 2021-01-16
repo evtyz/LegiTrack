@@ -101,9 +101,8 @@ public class Bill implements Serializable {
                 //summary = summary + x;
             }
         }
-        i = i + 2;
-        String y1 = title.substring(0,i-1);
-        String y2 = title.substring(i);
+        String y1 = title.substring(0,i);
+        String y2 = title.substring(i+2);
         title = y1;
         summary = y2;
     }
