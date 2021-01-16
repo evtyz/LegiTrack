@@ -2,6 +2,7 @@ package com.htn.legitrack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -27,6 +28,12 @@ public class BillDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill_display);
+
+        //Joe's test
+        Intent intent = getIntent();
+        String myState = intent.getStringExtra(MainActivity.STATE_NAME);
+        Log.d("test",myState);
+
         queue = Volley.newRequestQueue(this);
         billList = new ArrayList<>();
     }
