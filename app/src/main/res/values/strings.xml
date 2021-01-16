@@ -13,4 +13,6 @@
     <string name="summary">Summary:            </string>
     <string name="send_comment">SEND COMMENT</string>
     <string name="comment">Comment Here:</string>
+    <string name="oppose">Oppose</string>
+    <string name="support">Support</string>
 </resources>

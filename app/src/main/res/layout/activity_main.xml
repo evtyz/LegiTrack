@@ -17,7 +17,7 @@
         android:fontFamily="@font/lato"
         android:text="@string/welcome_msg"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/olive_green"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
         android:gravity="center"
         android:text="@string/welcome_msg2"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/olive_green"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
