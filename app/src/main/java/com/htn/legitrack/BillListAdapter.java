@@ -24,12 +24,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillListViewHolder> {
     List<Bill> billList = new ArrayList<>();
     RequestQueue queue;
     String state;
 
     private int pageLoaded;
+
+
 
 
     BillListAdapter(Context context, String state) {
