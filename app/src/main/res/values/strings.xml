@@ -3,4 +3,5 @@
     <string name="welcome_msg">WELCOME!</string>
     <string name="welcome_msg2">Let"s get started! First, tell us where you are:</string>
     <string name="cont">CONTINUE</string>
+    <string name="bill_display">Upcoming Bills</string>
 </resources>
