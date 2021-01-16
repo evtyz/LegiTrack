@@ -1,6 +1,8 @@
 package com.htn.legitrack;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +23,10 @@ import java.util.ArrayList;
 
 public class BillDisplay extends AppCompatActivity {
 
-    RequestQueue queue;
+    BillListAdapter adapter;
+    RecyclerView.LayoutManager layoutManager;
     ArrayList<Bill> billList;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,30 +37,14 @@ public class BillDisplay extends AppCompatActivity {
         Intent intent = getIntent();
         String myState = intent.getStringExtra(MainActivity.STATE_NAME);
         Log.d("test",myState);
-
-        queue = Volley.newRequestQueue(this);
         billList = new ArrayList<>();
+        recyclerView = findViewById(R.id.recycler_view);
+        adapter = new BillListAdapter(getApplicationContext(), myState);
+        layoutManager = new LinearLayoutManager(this);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(layoutManager);
     }
 
-    // Queries the API for latest bills of a particular state
-    // Add more parameters for filters later...
-    public void query(String state) {
-        String url = "https://v3.openstates.org/bills?jurisdiction=".concat(state).concat("&apikey=9341f3e4-6ae0-4d2d-b498-9f1d9c0ff8a6&include=abstracts"); // TODO
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray results = response.getJSONArray("results");
-                    for (int i = 0; i < results.length(); i++) {
-                        JSONObject bill = results.getJSONObject(i);
-                        billList.add(new Bill(bill));
-                        // TODO: do something to the bill
-                    }
-                } catch (JSONException e) {
-                    Log.e("JSON", "Json error");
-                }
-            }
-        }, error -> Log.e("Volley", "Volley error"));
-        queue.add(request);
-    }
+
 }
