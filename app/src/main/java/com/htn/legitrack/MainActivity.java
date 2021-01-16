@@ -59,4 +59,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void gotoreaction(View view) {
+        Intent intent = new Intent(getApplicationContext(), Reaction.class);
+        startActivity(intent);
+
+    }
 }
