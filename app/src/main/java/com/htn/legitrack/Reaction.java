@@ -22,8 +22,11 @@ public class Reaction extends AppCompatActivity {
 
     //Test code for pushing objects to the DB
 
-    JSONObject myBilljson = new JSONObject();
-    Bill myBilljava = new Bill(myBilljson);
+    //JSONObject myBilljson = new JSONObject();
+    //Bill myBilljava = new Bill(myBilljson);
+    DBobjects testObj1 = new DBobjects("13oin4f","this bill sucks!!!",1);
+    DBobjects testObj2 = new DBobjects("q983nr","this bill rocks!!!",5);
+    DBobjects testObj3 = new DBobjects("1p9387","meh",3);
     //
 
     @Override
@@ -33,8 +36,8 @@ public class Reaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
 
-    myBilljava.id = "123456" ;
-    myBilljava.title = "something else";
+    //myBilljava.id = "123456" ;
+    //myBilljava.title = "something else";
 
 
         //reactionText = (EditText) findViewById(R.id.reaction_test);
@@ -83,7 +86,11 @@ public class Reaction extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("message");
 
         //myRef.setValue(comment);
-        myRef.setValue(myBilljava);
+        //myRef.setValue(myBilljava);
+
+        myRef.push().setValue(testObj1);
+        myRef.push().setValue(testObj2);
+        myRef.push().setValue(testObj3);
 
         }
 
