@@ -36,6 +36,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/interest_display"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

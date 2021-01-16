@@ -28,6 +28,7 @@ public class BillDisplay extends AppCompatActivity {
     ArrayList<Bill> billList;
     RecyclerView recyclerView;
     String state;
+    ArrayList<String> interests;
 
     EndlessRecyclerViewScrollListener scrollListener;
 
@@ -39,6 +40,7 @@ public class BillDisplay extends AppCompatActivity {
         //Joe's test
         Intent intent = getIntent();
         state = intent.getStringExtra(MainActivity.STATE_NAME);
+        interests = intent.getStringArrayListExtra(InterestChooser.INTEREST_NAME);
         Log.d("test", state);
         billList = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_view);

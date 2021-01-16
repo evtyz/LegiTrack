@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public void sendState(View view) {
         stateName = dropdown.getSelectedItem().toString();
         //String stateName = "North Carolina";
-        Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
+        Intent intent = new Intent(getApplicationContext(), InterestChooser.class);
         intent.putExtra(STATE_NAME, stateName);
         startActivity(intent);
 
