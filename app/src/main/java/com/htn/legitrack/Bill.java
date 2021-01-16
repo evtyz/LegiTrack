@@ -92,6 +92,20 @@ public class Bill implements Serializable {
             }
         }, () -> {
         });
+
+        int i;
+        for(i = 0; i < title.length(); i++){
+            char x = (char)title.charAt(i);
+            if(x == ',' || x == ';'){
+                break;
+                //summary = summary + x;
+            }
+        }
+        i = i + 2;
+        //for(int j = i; j < title.length(); j++){
+        //    char y = (char)title.charAt(j);
+        //    summary = summary + y;
+        //}
     }
 }
 //
