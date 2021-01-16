@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "4949097261",
+    "project_id": "legitrack-ee0fc",
+    "storage_bucket": "legitrack-ee0fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4949097261:android:07155127ef40a8509ef1a4",
+        "android_client_info": {
+          "package_name": "com.htn.legitrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4949097261-dsrmolbvnf1lhjp4nctispl6l2eu2rit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQmkWSSksims2SJRL-VjHwEpXDYHvcO2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4949097261-dsrmolbvnf1lhjp4nctispl6l2eu2rit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
