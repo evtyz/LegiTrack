@@ -25,8 +25,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="359dp"
-        android:layout_height="518dp"
+        android:layout_width="365dp"
+        android:layout_height="451dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="184dp"
         android:layout_marginEnd="28dp"
@@ -40,4 +40,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="123dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="656dp"
+        android:text="@string/done"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
