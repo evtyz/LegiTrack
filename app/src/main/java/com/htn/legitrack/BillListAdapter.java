@@ -41,10 +41,10 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
 
     public void loadBills() {
 
-        int start = getItemCount();
         String url = "https://v3.openstates.org/bills?jurisdiction="
                 .concat(state)
                 .concat("&apikey=9341f3e4-6ae0-4d2d-b498-9f1d9c0ff8a6")
+                .concat("&include=abstracts&include=sources")
                 .concat("&per_page=20")
                 .concat("&page=")
                 .concat(Integer.toString(pageLoaded)); // TODO

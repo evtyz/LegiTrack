@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Bill {
     public String id; // Open states id, never display!
 
@@ -17,43 +19,78 @@ public class Bill {
 
     public String summary; // abstract, java doesn't like the word 'abstract'
 
-    public String[] subjects; // could be empty
+    public ArrayList<String> subjects = new ArrayList<>(); // could be empty
 
     public String legislature; // legislature where bill is presented
 
     public String publicID; // The actual government ID of the bill
 
-    public String[] sources; // URLs for source docs
+    public ArrayList<String> sources = new ArrayList<>(); // URLs for source docs
+
+    private interface JSONAttempt {
+        void attempt() throws JSONException;
+    }
+
+    public static void parseJSON(JSONAttempt main, Runnable backup) {
+        try {
+            main.attempt();
+        } catch (JSONException e) {
+            backup.run();
+            Log.e("Json", "Json parsing failed, error 2");
+        }
+    }
 
     public Bill(JSONObject rawBill) {
-    try {
-        id = rawBill.getString("id");
 
-        time = rawBill.getString("latest_action_date");
-
-        action = rawBill.getString("latest_action_description");
-
-        title = rawBill.getString("title");
-
-        summary = rawBill.getString("abstract");
-
-        JSONArray arr = rawBill.getJSONArray("subject");
-        for (int i = 0; i < arr.length(); i++) {
-            subjects[i] = arr.getJSONObject(i).getString("subject");
-        }
-
-        rawBill.getJSONObject("jurisdiction").getString("classification");
-
-        publicID = rawBill.getString("identifier");
-
-        JSONArray arr2 = rawBill.getJSONArray("openstates_url");
-        for (int i = 0; i < arr2.length(); i++) {
-            sources[i] = arr2.getJSONObject(i).getString("subject");
-        }
-    }
-    catch (JSONException e) {
-        Log.e("JSON", "Json error 2");
-    }
+        parseJSON(() -> {
+            id = rawBill.getString("id");
+        }, () -> {
+            id = "";
+        });
+        parseJSON(() -> {
+            action = rawBill.getString("latest_action_description");
+        }, () -> {
+            action = "";
+        });
+        parseJSON(() -> {
+            time = rawBill.getString("latest_action_date");
+        }, () -> {
+            time = "";
+        });
+        parseJSON(() -> {
+            title = rawBill.getString("title");
+        }, () -> {
+            title = "";
+        });
+        parseJSON(() -> {
+            summary = rawBill.getJSONArray("abstracts").getJSONObject(0).getString("abstract");
+        }, () -> {
+            summary = "";
+        });
+        parseJSON(() -> {
+            JSONArray arr = rawBill.getJSONArray("subject");
+            for (int i = 0; i < arr.length(); i++) {
+                subjects.add(arr.getString(i));
+            }
+        }, () -> {
+        });
+        parseJSON(() -> {
+            legislature = rawBill.getJSONObject("from_organization").getString("name");
+        }, () -> {
+            legislature = "";
+        });
+        parseJSON(() -> {
+            publicID = rawBill.getString("identifier");
+        }, () -> {
+            publicID = "Unknown";
+        });
+        parseJSON(() -> {
+            JSONArray arr = rawBill.getJSONArray("sources");
+            for (int i = 0; i < arr.length(); i++) {
+                sources.add(arr.getJSONObject(i).getString("url"));
+            }
+        }, () -> {
+        });
     }
 }
 //
