@@ -33,8 +33,8 @@ public class BillDisplay extends AppCompatActivity {
 
     // Queries the API for latest bills of a particular state
     // Add more parameters for filters later...
-    public void query(StateUS state) {
-        String url = "https://v3.openstates.org/bills?jurisdiction=".concat(state.unabbreviated).concat("&apikey=9341f3e4-6ae0-4d2d-b498-9f1d9c0ff8a6"); // TODO
+    public void query(String state) {
+        String url = "https://v3.openstates.org/bills?jurisdiction=".concat(state).concat("&apikey=9341f3e4-6ae0-4d2d-b498-9f1d9c0ff8a6"); // TODO
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
