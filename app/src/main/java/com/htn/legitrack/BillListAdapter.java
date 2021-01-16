@@ -24,30 +24,42 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillListViewHolder> {
     List<Bill> billList = new ArrayList<>();
     RequestQueue queue;
     String state;
 
+    public static final String APIKEY = "2a5c50a9-57e4-40e1-8f15-b53984537477";
+
+    public static final int NUM_BILLS_PER_PAGE = 20;
+
     private int pageLoaded;
 
+    private int num_bills_loaded;
+
+    private ArrayList<String> subjects;
 
 
-
-    BillListAdapter(Context context, String state) {
+    BillListAdapter(Context context, String state, ArrayList<String> subjects) {
         queue = Volley.newRequestQueue(context);
         this.state = state;
         pageLoaded = 1;
-        loadBills();
 
+        num_bills_loaded = 0;
+        this.subjects = subjects;
+        loadBills();
     }
 
     public void loadBills() {
 
+        if (pageLoaded > 3) {
+            return;
+        }
+
         String url = "https://v3.openstates.org/bills?jurisdiction="
                 .concat(state)
-                .concat("&apikey=9341f3e4-6ae0-4d2d-b498-9f1d9c0ff8a6")
+                .concat("&apikey=")
+                .concat(APIKEY)
                 .concat("&include=abstracts&include=sources")
                 .concat("&per_page=20")
                 .concat("&page=")
@@ -56,10 +68,20 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
             try {
                 JSONArray results = response.getJSONArray("results");
+                if (results.length() == 0) {
+                    return;
+                }
                 for (int i = 0; i < results.length(); i++) {
-                    addToList(results.getJSONObject(i));
-
+                    Bill bill = new Bill(results.getJSONObject(i));
+                    if (compareTwoLists(subjects, bill.subjects) || subjects.size() == 0) {
+                        billList.add(bill);
+                        num_bills_loaded++;
+                    }
                     // TODO: do something to the bill
+                }
+
+                if (num_bills_loaded < NUM_BILLS_PER_PAGE) {
+                    loadBills();
                 }
                 notifyDataSetChanged();
                 //                notifyItemRangeInserted(start, ITEMS_PER_PAGE);
@@ -70,9 +92,15 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
         queue.add(request);
     }
 
-    public void addToList(JSONObject bill) {
-        billList.add(new Bill(bill));
-        Log.d("add", "add");
+    public static boolean compareTwoLists(ArrayList<String> a, ArrayList<String> b) {
+        for (String wordA : a) {
+            for (String wordB : b) {
+                if (wordA.equals(wordB)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @NonNull
