@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,7 @@ public class Reaction extends AppCompatActivity {
     EditText reactionText;
     //private static final String TAG = Reaction.class.getSimpleName();
     DatabaseReference myRef;
-
+    SeekBar reactionRating;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class Reaction extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
+
+
 
         //reactionText = (EditText) findViewById(R.id.reaction_test);
 
@@ -67,7 +70,16 @@ public class Reaction extends AppCompatActivity {
     public void pushtoDB(View view) {
         // Push comment to DB
             reactionText = (EditText) findViewById(R.id.reaction_test);
-            myRef.child("comment").setValue("Did it work?");
+            //myRef.child("comment").setValue("Did it work?");
+            reactionRating = (SeekBar) findViewById(R.id.seekBar);
+
+        String comment = reactionText.getText().toString();
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue(comment);
         }
 
     }

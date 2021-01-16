@@ -25,7 +25,7 @@ public class BillInfo extends AppCompatActivity {
         titleView = findViewById(R.id.bill_info_title);
         summaryView = findViewById(R.id.bill_info_summary);
         subjectView = findViewById(R.id.bill_info_subjects);
-        urlView = findViewById(R.id.bill_info_urls);
+        urlView = findViewById(R.id.textView6);
 
         Intent intent = getIntent();
         bill = (Bill)intent.getSerializableExtra("bill");
