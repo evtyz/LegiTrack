@@ -1,5 +1,6 @@
 package com.htn.legitrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Reaction extends AppCompatActivity {
 
@@ -35,6 +38,8 @@ public class Reaction extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
+
+        //Intent intent = getIntent();
         newBill = (Bill) getIntent().getSerializableExtra("Bill");
     }
 
@@ -87,6 +92,8 @@ public class Reaction extends AppCompatActivity {
 
         myRef.push().setValue(testObj);
 
+        Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
+        startActivity(intent);
         }
     }
 
