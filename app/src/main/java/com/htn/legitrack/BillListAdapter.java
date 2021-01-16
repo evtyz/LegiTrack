@@ -1,6 +1,7 @@
 package com.htn.legitrack;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,6 +100,13 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
             super(itemView);
             billTextView = itemView.findViewById(R.id.bill_item_text_view);
             billLayoutView = itemView.findViewById(R.id.bill_item);
+
+            billTextView.setOnClickListener(view -> {
+                Bill current = (Bill) billLayoutView.getTag();
+                Intent intent = new Intent(view.getContext(), BillInfo.class);
+                intent.putExtra("bill", current);
+                view.getContext().startActivity(intent);
+            });
         }
     }
 }
