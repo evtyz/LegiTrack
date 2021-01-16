@@ -19,6 +19,7 @@ public class Reaction extends AppCompatActivity {
     //private static final String TAG = Reaction.class.getSimpleName();
     DatabaseReference myRef;
     SeekBar reactionRating;
+    int valInt;
 
     //Test code for pushing objects to the DB
 
@@ -26,7 +27,7 @@ public class Reaction extends AppCompatActivity {
     //Bill myBilljava = new Bill(myBilljson);
     DBobjects testObj1 = new DBobjects("13oin4f","this bill sucks!!!",1);
     DBobjects testObj2 = new DBobjects("q983nr","this bill rocks!!!",5);
-    DBobjects testObj3 = new DBobjects("1p9387","meh",3);
+    DBobjects testObj3 = new DBobjects("1p9387","meh",0);
     //
 
     @Override
@@ -77,16 +78,41 @@ public class Reaction extends AppCompatActivity {
         // Push comment to DB
             reactionText = (EditText) findViewById(R.id.reaction_test);
             //myRef.child("comment").setValue("Did it work?");
-            reactionRating = (SeekBar) findViewById(R.id.seekBar);
+            //reactionRating = (SeekBar) findViewById(R.id.seekBar);
+
+            SeekBar mySeek = (SeekBar) findViewById(R.id.seekBar);
 
         String comment = reactionText.getText().toString();
 
-        // Write a message to the database
+
+        mySeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+          public void onProgressChanged(SeekBar seekBar, int progress,
+                                        boolean fromUser) {
+              String valStr = String.valueOf(progress);
+              valInt = Integer.parseInt(valStr);
+              valInt = mySeek.getProgress();
+          }
+
+          @Override
+          public void onStartTrackingTouch(SeekBar seekBar) {
+          }
+
+          @Override
+          public void onStopTrackingTouch(SeekBar seekBar) {
+          }
+          });
+
+            // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
         //myRef.setValue(comment);
         //myRef.setValue(myBilljava);
+
+        testObj3.setComments(comment);
+        testObj3.setScore(valInt);
 
         myRef.push().setValue(testObj1);
         myRef.push().setValue(testObj2);
