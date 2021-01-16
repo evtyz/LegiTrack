@@ -104,7 +104,8 @@ public class Bill implements Serializable {
         String y1 = title.substring(0,i);
         String y2 = title.substring(i+2);
         title = y1;
-        summary = y2;
+        summary = "Summary: " + y2;
+        publicID = "Bill ID: " + publicID;
     }
 }
 //
