@@ -1,5 +1,9 @@
 package com.htn.legitrack;
 
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Bill {
@@ -22,6 +26,34 @@ public class Bill {
     public String[] sources; // URLs for source docs
 
     public Bill(JSONObject rawBill) {
+    try {
+        id = rawBill.getString("id");
 
+        time = rawBill.getString("latest_action_date");
+
+        action = rawBill.getString("latest_action_description");
+
+        title = rawBill.getString("title");
+
+        summary = rawBill.getString("abstract");
+
+        JSONArray arr = rawBill.getJSONArray("subject");
+        for (int i = 0; i < arr.length(); i++) {
+            subjects[i] = arr.getJSONObject(i).getString("subject");
+        }
+
+        rawBill.getJSONObject("jurisdiction").getString("classification");
+
+        publicID = rawBill.getString("identifier");
+
+        JSONArray arr2 = rawBill.getJSONArray("openstates_url");
+        for (int i = 0; i < arr.length(); i++) {
+            sources[i] = arr.getJSONObject(i).getString("subject");
+        }
+    }
+    catch (JSONException e) {
+        Log.e("JSON", "Json error");
+    }
     }
 }
+//
