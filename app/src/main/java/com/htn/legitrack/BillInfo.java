@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,4 +52,9 @@ public class BillInfo extends AppCompatActivity {
         return stringList;
     }
 
+    public void sendComment(View view) {
+        Intent intent = new Intent(getApplicationContext(), Reaction.class);
+        startActivity(intent);
+
+    }
 }
