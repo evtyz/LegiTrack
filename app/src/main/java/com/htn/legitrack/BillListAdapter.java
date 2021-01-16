@@ -98,7 +98,7 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
 
         public BillListViewHolder(@NonNull View itemView) {
             super(itemView);
-            billTextView = itemView.findViewById(R.id.textView7);
+            billTextView = itemView.findViewById(R.id.bill_item_text);
             billLayoutView = itemView.findViewById(R.id.bill_item);
 
             billLayoutView.setOnClickListener(view -> {
