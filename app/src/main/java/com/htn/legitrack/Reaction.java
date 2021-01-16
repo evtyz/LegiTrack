@@ -28,6 +28,11 @@ public class Reaction extends AppCompatActivity {
     DatabaseReference myRef;
     SeekBar reactionRating;
 
+    //Test code for pushing objects to the DB
+    JSONObject myBilljson = new JSONObject();
+    Bill myBilljava = new Bill(myBilljson);
+    //
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -35,12 +40,8 @@ public class Reaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
 
-        JSONObject myBill = new JSONObject();
-        try {
-            myBill.put("id", "123456");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    myBilljava.id = "123456" ;
+    myBilljava.title = "something else";
 
 
         //reactionText = (EditText) findViewById(R.id.reaction_test);
@@ -88,7 +89,8 @@ public class Reaction extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue(comment);
+        //myRef.setValue(comment);
+        myRef.setValue(myBilljava);
 
         }
 
