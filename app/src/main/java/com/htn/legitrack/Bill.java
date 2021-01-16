@@ -6,9 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Bill {
+public class Bill implements Serializable {
     public String id; // Open states id, never display!
 
     public String time; // Open States time for "latest action date"
