@@ -37,13 +37,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="282dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="288dp"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
+        android:id="@+id/dialog"
+        android:layout_width="286dp"
+        android:layout_height="268dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="240dp"
+        android:background="@android:drawable/spinner_background"
+        android:spinnerMode="dialog"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
