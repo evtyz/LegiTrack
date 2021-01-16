@@ -92,8 +92,7 @@ public class Reaction extends AppCompatActivity {
 
         myRef.push().setValue(testObj);
 
-        Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
-        startActivity(intent);
+        finish();
         }
     }
 
