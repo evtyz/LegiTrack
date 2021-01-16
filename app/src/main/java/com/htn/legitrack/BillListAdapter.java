@@ -98,10 +98,10 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
 
         public BillListViewHolder(@NonNull View itemView) {
             super(itemView);
-            billTextView = itemView.findViewById(R.id.bill_item_text_view);
+            billTextView = itemView.findViewById(R.id.textView7);
             billLayoutView = itemView.findViewById(R.id.bill_item);
 
-            billTextView.setOnClickListener(view -> {
+            billLayoutView.setOnClickListener(view -> {
                 Bill current = (Bill) billLayoutView.getTag();
                 Intent intent = new Intent(view.getContext(), BillInfo.class);
                 intent.putExtra("bill", current);
