@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class BillDisplay extends AppCompatActivity {
 
     RequestQueue queue;
-    ArrayList<JSONObject> billList;
+    ArrayList<Bill> billList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class BillDisplay extends AppCompatActivity {
                     JSONArray results = response.getJSONArray("results");
                     for (int i = 0; i < results.length(); i++) {
                         JSONObject bill = results.getJSONObject(i);
-                        billList.add(bill);
+                        billList.add(new Bill(bill));
                         // TODO: do something to the bill
                     }
                 } catch (JSONException e) {

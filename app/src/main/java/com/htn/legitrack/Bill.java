@@ -1,5 +1,7 @@
 package com.htn.legitrack;
 
+import org.json.JSONObject;
+
 public class Bill {
     public String id; // Open states id, never display!
 
@@ -19,7 +21,7 @@ public class Bill {
 
     public String[] sources; // URLs for source docs
 
-    public Bill() {
-        
+    public Bill(JSONObject rawBill) {
+
     }
 }
