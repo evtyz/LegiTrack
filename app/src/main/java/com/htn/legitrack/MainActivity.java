@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String STATE_NAME = "com.htn.legitrack.STATE_NAME";
     String stateName;
+    Spinner dropdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         //Joe's test comment
 
         //define a spinner that is the same as the one declared in XML
-        Spinner dropdown = findViewById(R.id.spinner1);
-        stateName = dropdown.getSelectedItem().toString();
+        dropdown = findViewById(R.id.spinner1);
+        //
 
         //dropdown.setOnItemSelectedListener(new MySpinnerSelectedListener());
 
@@ -51,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
         }*/
 
     public void sendState(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), Bill.class);
+        stateName = dropdown.getSelectedItem().toString();
+        //String stateName = "North Carolina";
+        Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
         intent.putExtra(STATE_NAME, stateName);
         startActivity(intent);
 
