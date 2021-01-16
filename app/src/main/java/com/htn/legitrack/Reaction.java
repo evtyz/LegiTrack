@@ -83,6 +83,7 @@ public class Reaction extends AppCompatActivity {
             SeekBar mySeek = (SeekBar) findViewById(R.id.seekBar);
 
         String comment = reactionText.getText().toString();
+        valInt = mySeek.getProgress();
 
 
         mySeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -91,8 +92,8 @@ public class Reaction extends AppCompatActivity {
           public void onProgressChanged(SeekBar seekBar, int progress,
                                         boolean fromUser) {
               String valStr = String.valueOf(progress);
-              valInt = Integer.parseInt(valStr);
-              valInt = mySeek.getProgress();
+              //valInt = Integer.parseInt(valStr);
+              //valInt = mySeek.getProgress();
           }
 
           @Override
