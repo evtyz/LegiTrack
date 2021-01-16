@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotointerest(View view) {
-        Intent intent = new Intent(getApplicationContext(), InterestChooser.class);
-        startActivity(intent);
+//        Intent intent = new Intent(getApplicationContext(), InterestChooser.class);
+//        startActivity(intent);
     }
 }
