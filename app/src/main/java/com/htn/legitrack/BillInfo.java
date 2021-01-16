@@ -37,7 +37,7 @@ public class BillInfo extends AppCompatActivity {
     private void loadBill(Bill bill) {
         titleView.setText(bill.title);
         summaryView.setText(bill.summary);
-        subjectView.setText(convertListToString(bill.subjects));
+        subjectView.setText(convertListToString(bill.sources));
         urlView.setText(bill.publicID);
     }
 
