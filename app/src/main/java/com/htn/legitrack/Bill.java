@@ -1,12 +1,8 @@
 package com.htn.legitrack;
 
-import android.content.Intent;
+import org.json.JSONObject;
 
 public class Bill {
-
-    Intent intent = getIntent();
-    String myState = intent.getStringExtra(MainActivity.STATE_NAME);
-
     public String id; // Open states id, never display!
 
     public String time; // Open States time for "latest action date"
@@ -25,7 +21,7 @@ public class Bill {
 
     public String[] sources; // URLs for source docs
 
-    public Bill() {
-        
+    public Bill(JSONObject rawBill) {
+
     }
 }
