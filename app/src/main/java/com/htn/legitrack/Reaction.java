@@ -70,11 +70,13 @@ public class Reaction extends AppCompatActivity {
             reactionText = (EditText) findViewById(R.id.reaction_test);
             //myRef.child("comment").setValue("Did it work?");
 
+        String comment = reactionText.getText().toString();
+
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
+        myRef.setValue(comment);
         }
 
     }
