@@ -1,6 +1,12 @@
 package com.htn.legitrack;
 
+import android.content.Intent;
+
 public class Bill {
+
+    Intent intent = getIntent();
+    String myState = intent.getStringExtra(MainActivity.STATE_NAME);
+
     public String id; // Open states id, never display!
 
     public String time; // Open States time for "latest action date"

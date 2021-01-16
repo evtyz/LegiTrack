@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendState(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), StateUS.class);
+        Intent intent = new Intent(getApplicationContext(), Bill.class);
         intent.putExtra(STATE_NAME, stateName);
         startActivity(intent);
 
