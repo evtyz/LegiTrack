@@ -47,6 +47,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="144dp"
         android:layout_marginTop="656dp"
+        android:onClick="sendInterest"
         android:text="@string/done"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
