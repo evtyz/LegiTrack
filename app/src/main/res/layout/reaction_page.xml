@@ -52,14 +52,18 @@
     app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
+
+
     ]]>
 
     <EditText
         android:id="@+id/reaction_test"
         android:layout_width="293dp"
         android:layout_height="267dp"
-        android:layout_marginTop="212dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="60dp"
         android:autofillHints=""
         android:backgroundTint="@color/white"
         android:drawableTint="@color/white"
@@ -119,16 +123,6 @@
         android:text="@string/support"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="283dp"
-        android:layout_height="258dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="338dp"
-        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
