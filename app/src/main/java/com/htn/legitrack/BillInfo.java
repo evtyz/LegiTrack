@@ -24,7 +24,7 @@ public class BillInfo extends AppCompatActivity {
         setContentView(R.layout.activity_bill_info);
 
         titleView = findViewById(R.id.bill_info_title);
-        //summaryView = findViewById(R.id.bill_info_title);
+        summaryView = findViewById(R.id.bill_info_summary);
         subjectView = findViewById(R.id.bill_info_subjects);
         urlView = findViewById(R.id.textView6);
 
@@ -36,7 +36,7 @@ public class BillInfo extends AppCompatActivity {
 
     private void loadBill(Bill bill) {
         titleView.setText(bill.title);
-        summaryView.setText(bill.title);
+        summaryView.setText(bill.summary);
         subjectView.setText(convertListToString(bill.subjects));
         urlView.setText(convertListToString(bill.sources));
     }

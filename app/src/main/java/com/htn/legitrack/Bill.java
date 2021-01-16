@@ -102,10 +102,10 @@ public class Bill implements Serializable {
             }
         }
         i = i + 2;
-        //for(int j = i; j < title.length(); j++){
-        //    char y = (char)title.charAt(j);
-        //    summary = summary + y;
-        //}
+        String y1 = title.substring(0,i-1);
+        String y2 = title.substring(i);
+        title = y1;
+        summary = y2;
     }
 }
 //
