@@ -18,6 +18,7 @@
         <activity android:name=".BillDisplay" />
         <activity android:name=".Reaction" />
         <activity android:name=".BillInfo" />
+        <activity android:name=".ViewComments" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
