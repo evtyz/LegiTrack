@@ -20,6 +20,7 @@ public class Reaction extends AppCompatActivity {
     DatabaseReference myRef;
     SeekBar reactionRating;
     int valInt;
+    String comment;
 
     //Test code for pushing objects to the DB
 
@@ -32,96 +33,56 @@ public class Reaction extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
-
-    //myBilljava.id = "123456" ;
-    //myBilljava.title = "something else";
-
-
-        //reactionText = (EditText) findViewById(R.id.reaction_test);
-
     }
 
-    /*public void basicReadWrite() {
-        // [START write_message]
+
+    // Push comment and score to DB when button is clicked
+    public void pushtoDB(View view) {
+
+        //manage text first
+        reactionText = (EditText) findViewById(R.id.reaction_test);
+        comment = reactionText.getText().toString();
+
+        //now seekBar
+        SeekBar mySeek = (SeekBar) findViewById(R.id.seekBar);
+        valInt = mySeek.getProgress();
+
+        //set up seekBar listener
+        mySeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
+        });
+
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
-        // [END write_message]
-
-        // [START read_message]
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-        // [END read_message]
-    }*/
-
-    public void pushtoDB(View view) {
-        // Push comment to DB
-            reactionText = (EditText) findViewById(R.id.reaction_test);
-            //myRef.child("comment").setValue("Did it work?");
-            //reactionRating = (SeekBar) findViewById(R.id.seekBar);
-
-            SeekBar mySeek = (SeekBar) findViewById(R.id.seekBar);
-
-        String comment = reactionText.getText().toString();
-        valInt = mySeek.getProgress();
-
-
-        mySeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-            @Override
-          public void onProgressChanged(SeekBar seekBar, int progress,
-                                        boolean fromUser) {
-              String valStr = String.valueOf(progress);
-              //valInt = Integer.parseInt(valStr);
-              //valInt = mySeek.getProgress();
-          }
-
-          @Override
-          public void onStartTrackingTouch(SeekBar seekBar) {
-          }
-
-          @Override
-          public void onStopTrackingTouch(SeekBar seekBar) {
-          }
-          });
-
-            // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        //myRef.setValue(comment);
-        //myRef.setValue(myBilljava);
-
+        //set the comments and score for the object
         testObj3.setComments(comment);
         testObj3.setScore(valInt);
 
+        //push all 3 objects to the DB
         myRef.push().setValue(testObj1);
         myRef.push().setValue(testObj2);
         myRef.push().setValue(testObj3);
 
         }
-
-        }
+    }
 
 
 

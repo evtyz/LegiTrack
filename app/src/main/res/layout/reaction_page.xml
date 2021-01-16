@@ -96,7 +96,6 @@
         android:backgroundTint="@color/black"
         android:indeterminateTint="@color/black"
         android:max="5"
-        android:min="1"
         android:progressBackgroundTint="@color/black"
         android:progressTint="@color/black"
         android:secondaryProgressTint="@color/black"
