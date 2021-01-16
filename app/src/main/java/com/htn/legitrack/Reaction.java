@@ -80,8 +80,11 @@ public class Reaction extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue(comment);
+
         }
 
-    }
+        }
+
+
 
 
