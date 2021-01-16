@@ -17,6 +17,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Reaction extends AppCompatActivity {
 
     private static final String TAG = "Reaction";
@@ -32,13 +35,19 @@ public class Reaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
 
+        JSONObject myBill = new JSONObject();
+        try {
+            myBill.put("id", "123456");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         //reactionText = (EditText) findViewById(R.id.reaction_test);
 
     }
 
-    public void basicReadWrite() {
+    /*public void basicReadWrite() {
         // [START write_message]
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -65,7 +74,7 @@ public class Reaction extends AppCompatActivity {
             }
         });
         // [END read_message]
-    }
+    }*/
 
     public void pushtoDB(View view) {
         // Push comment to DB
