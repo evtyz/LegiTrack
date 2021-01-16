@@ -31,13 +31,15 @@ public class ViewComments extends AppCompatActivity {
 
 
         // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
+        //myRef.addValueEventListener(new ValueEventListener() {
+        ValueEventListener postListener = new ValueEventListener() {
+
+                @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
+                DBobjects myObj  = dataSnapshot.getValue(DBobjects.class);
+                //Log.d(TAG, "Comment: " + myObj.comments);
             }
 
             @Override
@@ -45,7 +47,8 @@ public class ViewComments extends AppCompatActivity {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
-        });
+        }//)
+        ;
         }
 
 
