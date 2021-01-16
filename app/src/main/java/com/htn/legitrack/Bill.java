@@ -47,12 +47,12 @@ public class Bill {
         publicID = rawBill.getString("identifier");
 
         JSONArray arr2 = rawBill.getJSONArray("openstates_url");
-        for (int i = 0; i < arr.length(); i++) {
-            sources[i] = arr.getJSONObject(i).getString("subject");
+        for (int i = 0; i < arr2.length(); i++) {
+            sources[i] = arr2.getJSONObject(i).getString("subject");
         }
     }
     catch (JSONException e) {
-        Log.e("JSON", "Json error");
+        Log.e("JSON", "Json error 2");
     }
     }
 }

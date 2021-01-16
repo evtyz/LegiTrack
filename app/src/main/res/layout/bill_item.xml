@@ -9,6 +9,7 @@
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
     <TextView
+        android:textSize="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/bill_item_text_view" />
