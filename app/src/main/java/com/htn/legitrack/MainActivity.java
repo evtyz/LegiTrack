@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String STATE_NAME = "com.htn.legitrack.STATE_NAME";
+    String stateName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         //define a spinner that is the same as the one declared in XML
         Spinner dropdown = findViewById(R.id.spinner1);
-        dropdown.setOnItemSelectedListener(new MySpinnerSelectedListener());
+        stateName = dropdown.getSelectedItem().toString();
+
+        //dropdown.setOnItemSelectedListener(new MySpinnerSelectedListener());
 
 //create a list of states for the spinner
         String[] items = new String[]{"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         dropdown.setAdapter(adapter);
     }
 
-    public class MySpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
+    /*public class MySpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             String selected = parent.getItemAtPosition(pos).toString();
@@ -44,22 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
         public void onNothingSelected(AdapterView parent) {
             // Do nothing.
-        }
-
-        /** Called when the user taps the done button */
-        /*public void sendState(View view) {
-
-            Intent intent = new Intent(getApplicationContext(), whatever.class);
-            String strName = null;
-            intent.putExtra("getData", USN.toString());
-            startActivity(intent);
-
         }*/
 
+    public void sendState(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), StateUS.class);
+        intent.putExtra(STATE_NAME, stateName);
+        startActivity(intent);
+
     }
-
-
-
-
-
 }
