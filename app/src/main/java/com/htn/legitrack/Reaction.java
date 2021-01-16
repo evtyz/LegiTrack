@@ -25,21 +25,22 @@ public class Reaction extends AppCompatActivity {
     int valInt;
     String comment;
 
-    //Test code for pushing objects to the DB
+    Bill newBill;
+    //Bill newBill = (Bill) getIntent().getSerializableExtra("MyClass");
 
-    //JSONObject myBilljson = new JSONObject();
-    //Bill myBilljava = new Bill(myBilljson);
-    DBobjects testObj1 = new DBobjects("13oin4f","this bill sucks!!!",1);
-    DBobjects testObj2 = new DBobjects("q983nr","this bill rocks!!!",5);
-    DBobjects testObj3 = new DBobjects("1p9387","meh",0);
-    //
+    //Test code for pushing objects to the DB
+    //DBobjects testObj1 = new DBobjects("13oin4f","this bill sucks!!!",1);
+    //DBobjects testObj2 = new DBobjects("q983nr","this bill rocks!!!",5);
+    //DBobjects testObj3 = new DBobjects("1p9387","meh",0);
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
 
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
+        newBill = (Bill) getIntent().getSerializableExtra("Bill");
     }
 
 
@@ -78,13 +79,18 @@ public class Reaction extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("message");
 
         //set the comments and score for the object
-        testObj3.setComments(comment);
-        testObj3.setScore(valInt);
+        //testObj3.setComments(comment);
+        //testObj3.setScore(valInt);
+        DBobjects testObj = new DBobjects(newBill);
+        testObj.setComments(comment);
+        testObj.setScore(valInt);
 
         //push all 3 objects to the DB
-        myRef.push().setValue(testObj1);
-        myRef.push().setValue(testObj2);
-        myRef.push().setValue(testObj3);
+        //myRef.push().setValue(testObj1);
+        //myRef.push().setValue(testObj2);
+        //myRef.push().setValue(testObj3);
+
+        myRef.push().setValue(testObj);
 
         Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
         startActivity(intent);

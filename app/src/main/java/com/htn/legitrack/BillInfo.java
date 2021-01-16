@@ -54,6 +54,7 @@ public class BillInfo extends AppCompatActivity {
 
     public void sendComment(View view) {
         Intent intent = new Intent(getApplicationContext(), Reaction.class);
+        intent.putExtra("Bill", bill);
         startActivity(intent);
 
     }
