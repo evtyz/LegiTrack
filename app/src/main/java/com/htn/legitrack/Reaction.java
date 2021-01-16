@@ -23,13 +23,14 @@ public class Reaction extends AppCompatActivity {
     //private static final String TAG = Reaction.class.getSimpleName();
     DatabaseReference myRef;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
+
+
 
         //reactionText = (EditText) findViewById(R.id.reaction_test);
 
@@ -67,7 +68,13 @@ public class Reaction extends AppCompatActivity {
     public void pushtoDB(View view) {
         // Push comment to DB
             reactionText = (EditText) findViewById(R.id.reaction_test);
-            myRef.child("comment").setValue("Did it work?");
+            //myRef.child("comment").setValue("Did it work?");
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
         }
 
     }
