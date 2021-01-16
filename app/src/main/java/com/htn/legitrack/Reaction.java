@@ -1,21 +1,16 @@
 package com.htn.legitrack;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONObject;
 
 public class Reaction extends AppCompatActivity {
 
@@ -25,6 +20,15 @@ public class Reaction extends AppCompatActivity {
     DatabaseReference myRef;
     SeekBar reactionRating;
 
+    //Test code for pushing objects to the DB
+
+    //JSONObject myBilljson = new JSONObject();
+    //Bill myBilljava = new Bill(myBilljson);
+    DBobjects testObj1 = new DBobjects("13oin4f","this bill sucks!!!",1);
+    DBobjects testObj2 = new DBobjects("q983nr","this bill rocks!!!",5);
+    DBobjects testObj3 = new DBobjects("1p9387","meh",3);
+    //
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -32,13 +36,15 @@ public class Reaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reaction_page);
 
+    //myBilljava.id = "123456" ;
+    //myBilljava.title = "something else";
 
 
         //reactionText = (EditText) findViewById(R.id.reaction_test);
 
     }
 
-    public void basicReadWrite() {
+    /*public void basicReadWrite() {
         // [START write_message]
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -65,7 +71,7 @@ public class Reaction extends AppCompatActivity {
             }
         });
         // [END read_message]
-    }
+    }*/
 
     public void pushtoDB(View view) {
         // Push comment to DB
@@ -79,7 +85,12 @@ public class Reaction extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue(comment);
+        //myRef.setValue(comment);
+        //myRef.setValue(myBilljava);
+
+        myRef.push().setValue(testObj1);
+        myRef.push().setValue(testObj2);
+        myRef.push().setValue(testObj3);
 
         }
 
