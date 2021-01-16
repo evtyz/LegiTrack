@@ -24,9 +24,12 @@ import java.util.ArrayList;
 public class BillDisplay extends AppCompatActivity {
 
     BillListAdapter adapter;
-    RecyclerView.LayoutManager layoutManager;
+    LinearLayoutManager layoutManager;
     ArrayList<Bill> billList;
     RecyclerView recyclerView;
+    String state;
+
+    EndlessRecyclerViewScrollListener scrollListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +38,23 @@ public class BillDisplay extends AppCompatActivity {
 
         //Joe's test
         Intent intent = getIntent();
-        String myState = intent.getStringExtra(MainActivity.STATE_NAME);
-        Log.d("test",myState);
+        state = intent.getStringExtra(MainActivity.STATE_NAME);
+        Log.d("test", state);
         billList = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new BillListAdapter(getApplicationContext(), myState);
+        adapter = new BillListAdapter(getApplicationContext(), state);
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                adapter.loadBills();
+            }
+        };
+
+        recyclerView.addOnScrollListener(scrollListener);
     }
-
-
 }

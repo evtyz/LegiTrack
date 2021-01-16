@@ -28,22 +28,37 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
     RequestQueue queue;
     String state;
 
+    private int pageLoaded;
+
+
     BillListAdapter(Context context, String state) {
         queue = Volley.newRequestQueue(context);
         this.state = state;
+        pageLoaded = 1;
         loadBills();
+
     }
 
     public void loadBills() {
-        String url = "https://v3.openstates.org/bills?jurisdiction=".concat(state).concat("&apikey=9341f3e4-6ae0-4d2d-b498-9f1d9c0ff8a6"); // TODO
+
+        int start = getItemCount();
+        String url = "https://v3.openstates.org/bills?jurisdiction="
+                .concat(state)
+                .concat("&apikey=9341f3e4-6ae0-4d2d-b498-9f1d9c0ff8a6")
+                .concat("&per_page=20")
+                .concat("&page=")
+                .concat(Integer.toString(pageLoaded)); // TODO
+        pageLoaded++;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
             try {
                 JSONArray results = response.getJSONArray("results");
                 for (int i = 0; i < results.length(); i++) {
                     addToList(results.getJSONObject(i));
+
                     // TODO: do something to the bill
                 }
                 notifyDataSetChanged();
+                //                notifyItemRangeInserted(start, ITEMS_PER_PAGE);
             } catch (JSONException e) {
                 Log.e("JSON", "Json error");
             }
@@ -53,6 +68,7 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
 
     public void addToList(JSONObject bill) {
         billList.add(new Bill(bill));
+        Log.d("add", "add");
     }
 
     @NonNull
