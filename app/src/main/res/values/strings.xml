@@ -5,6 +5,8 @@
     <string name="cont">CONTINUE</string>
     <string name="bill_display">Upcoming Bills</string>
     <string name="underline">_________________</string>
+    <string name="reaction_title">Reactions Page</string>
+    <string name="reaction_done">Done!</string>
     <string name="bill_name">Bill H.R. 2234</string>
     <string name="title">Title:            </string>
     <string name="subject">Subject:            </string>
