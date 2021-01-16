@@ -3,7 +3,7 @@
     <style name="Theme.LegiTrack" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/olive_green</item>
-        <item name="colorPrimaryVariant">@color/very_light_green</item>
+        <item name="colorPrimaryVariant">@color/other_green</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/light_green</item>
