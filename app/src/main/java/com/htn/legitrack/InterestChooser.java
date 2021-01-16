@@ -2,11 +2,16 @@ package com.htn.legitrack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ScrollView;
 
 public class InterestChooser extends AppCompatActivity {
 
     public String state;
+    String interestName;
+    ScrollView scrollMenu;
 
     public final String[] INTEREST_LIST = new String[]
             {"Agriculture and Food", "Animal Rights and Wildlife Issues", "Arts and Humanities",
@@ -25,5 +30,13 @@ public class InterestChooser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interest_chooser);
         // TODO: add interests
+    }
+
+    public void sendInterest(View view) {
+        //interestName = scrollMenu.getSelectedItem().toString();
+        Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
+        //intent.putExtra(INTEREST_NAME, interestName);
+        startActivity(intent);
+
     }
 }
