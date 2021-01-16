@@ -3,6 +3,8 @@
     package="com.htn.legitrack">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+
 
     <application
         android:allowBackup="true"

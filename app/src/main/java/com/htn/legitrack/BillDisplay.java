@@ -44,7 +44,7 @@ public class BillDisplay extends AppCompatActivity {
         Log.d("test", state);
         billList = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new BillListAdapter(getApplicationContext(), state);
+        adapter = new BillListAdapter(getApplicationContext(), state, interests);
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setAdapter(adapter);
