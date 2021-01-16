@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,7 +38,8 @@ public class BillInfo extends AppCompatActivity {
     private void loadBill(Bill bill) {
         titleView.setText(bill.title);
         summaryView.setText(bill.summary);
-        subjectView.setText(convertListToString(bill.subjects));
+        subjectView.setText(convertListToString(bill.sources));
+        subjectView.setMovementMethod(LinkMovementMethod.getInstance());
         urlView.setText(bill.publicID);
     }
 
