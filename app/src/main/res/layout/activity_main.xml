@@ -79,7 +79,7 @@
         android:layout_marginTop="120dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato"
-        android:onClick="gotoreaction"
+        android:onClick="gotointerest"
         android:text="TEST"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
