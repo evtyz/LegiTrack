@@ -43,7 +43,8 @@ public class ViewComments extends AppCompatActivity {
 
     List<DBobjects> myList = new ArrayList<DBobjects>();
     Bill newBill;
-    int counter, summer, average;
+    double summer;
+    double average;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,9 @@ public class ViewComments extends AppCompatActivity {
 
         average = summer / myList.size();
         averageScoreNumber.setText(String.valueOf(average));
+        Log.d(TAG, String.valueOf("startHere"));
+        Log.d(TAG, String.valueOf(summer));
+        Log.d(TAG, String.valueOf(myList.size()));
 
     }
 
