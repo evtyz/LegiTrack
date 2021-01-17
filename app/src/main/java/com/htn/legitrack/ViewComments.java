@@ -24,12 +24,13 @@ import java.util.List;
 public class ViewComments extends AppCompatActivity {
 
     private static final String TAG = "ViewComments";
-    String testComment;
+    String testComment = "";
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
 
     public TextView newtextview1;
+    public TextView newtextview2;
 
     List<DBobjects> myList = new ArrayList<DBobjects>();
     Bill newBill;
@@ -40,12 +41,12 @@ public class ViewComments extends AppCompatActivity {
         setContentView(R.layout.view_comments);
 
         Intent intent = getIntent();
-        newBill = (Bill)intent.getSerializableExtra("thisBill");
+        newBill = (Bill) intent.getSerializableExtra("thisBill");
         //Intent intent = getIntent();
         //newBill = (Bill) getIntent().getSerializableExtra("Bill");
 
         newtextview1 = (TextView) findViewById(R.id.newtextview1);
-        newtextview1.setText(newBill.publicID);
+        newtextview2 = (TextView) findViewById(R.id.newtextview2);
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -68,19 +69,28 @@ public class ViewComments extends AppCompatActivity {
         });
     }
 
-            public void showData(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds: dataSnapshot.getChildren()) {
-                    String key = ds.getKey();
-                    DBobjects testObj = new DBobjects();
+    public void showData(DataSnapshot dataSnapshot) {
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            String key = ds.getKey();
+            DBobjects testObj = new DBobjects();
 
-                    testObj.setComments(ds.getValue(DBobjects.class).getComments());
-                    testObj.setScore(ds.getValue(DBobjects.class).getScore());
-                    testObj.setId(ds.getValue(DBobjects.class).getId());
+            testObj.setComments(ds.getValue(DBobjects.class).getComments());
+            testObj.setScore(ds.getValue(DBobjects.class).getScore());
+            testObj.setId(ds.getValue(DBobjects.class).getId());
 
-                    Log.d(TAG, testObj.getComments());
-                    Log.d(TAG, String.valueOf(testObj.getScore()));
-                    Log.d(TAG, testObj.getId());
+            Log.d(TAG, testObj.getComments());
+            Log.d(TAG, String.valueOf(testObj.getScore()));
+            Log.d(TAG, testObj.getId());
 
-                }
+            if (newBill.id == testObj.id) {
+                myList.add(testObj);
             }
-        }
+
+            for (int i = 0; i < myList.size(); i++ )
+            {
+                testComment = testComment + "\n\n" + myList.get(i).comments;
+                newtextview1.setText(testComment);
+            }
+            }
+    }
+}
