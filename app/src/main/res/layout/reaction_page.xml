@@ -93,7 +93,7 @@
                 android:textColorHint="@color/black"
                 android:textColorLink="@color/black" />
             <Button
-                android:layout_margin="20dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/push"
                 android:layout_gravity="center"
                 style="@style/Widget.AppCompat.Button"
@@ -108,7 +108,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:id="@+id/view_Comments3"
                 android:layout_gravity="center"
                 style="@style/Widget.AppCompat.Button"
@@ -117,6 +117,19 @@
                 android:fontFamily="@font/lato"
                 android:onClick="viewComments"
                 android:text="@string/viewComments"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="200dp"
+                android:layout_height="51dp"
+                android:fontFamily="@font/lato"
+                android:onClick="share"
+                android:text="SHARE"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
