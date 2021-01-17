@@ -13,10 +13,10 @@
         android:layout_width="290dp"
         android:layout_height="47dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato"
-        android:text="@string/bill_name"
+        android:text="Bill ID"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="@color/black"
@@ -31,7 +31,7 @@
         android:layout_width="181dp"
         android:layout_height="61dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato"
         android:onClick="sendComment"
@@ -63,39 +63,21 @@
 
 
 
-
-
-
-
-
-
     ]]>
 
     <TextView
         android:id="@+id/newtextview2"
-        android:layout_width="264dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="337dp"
+        android:layout_height="449dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
         android:background="#FFFFFF"
         android:paddingTop="10dp"
-        android:text="@string/support"
+        android:text="COMMENTS"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newtextview1" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="411dp"
-        android:layout_height="273dp"
-        android:background="#FFFFFF"
-        android:paddingStart="7dp"
-        android:paddingTop="3dp"
-        android:paddingEnd="5dp"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="242dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
