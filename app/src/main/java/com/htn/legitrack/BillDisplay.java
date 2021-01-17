@@ -60,10 +60,4 @@ public class BillDisplay extends AppCompatActivity {
 
         recyclerView.addOnScrollListener(scrollListener);
     }
-
-    public void viewComments(View view) {
-        Intent intent = new Intent(getApplicationContext(), ViewComments.class);
-        startActivity(intent);
-
-    }
 }

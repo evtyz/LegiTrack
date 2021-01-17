@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/pale_green"
     android:orientation="vertical"
+    android:textAlignment="center"
     tools:context=".BillInfo">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="556dp"
+        android:layout_width="338dp"
+        android:layout_height="470dp"
         android:layout_marginHorizontal="40dp"
         android:layout_marginVertical="10dp"
         android:orientation="vertical">
@@ -18,12 +19,12 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="67dp" />
+            android:layout_height="35dp" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
-            android:layout_height="129dp"
+            android:layout_height="82dp"
             android:layout_gravity="center"
             android:text="@string/bill_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
@@ -40,10 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:background="@color/white"
+            android:paddingTop="20dp"
             android:text="@string/title"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
-            android:textColorHighlight="@color/black" />
+            android:textColorHighlight="@color/black"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView7"
@@ -57,7 +61,9 @@
             android:autoLink="web"
             android:background="@color/white"
             android:linksClickable="true"
+            android:paddingTop="3dp"
             android:text="@string/subject"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
             android:textColorHighlight="@color/black"
@@ -74,6 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="156dp"
             android:background="@color/white"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
             android:text="@string/summary"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
@@ -94,10 +102,23 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <Button
+            android:id="@+id/view_Comments"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:fontFamily="@font/lato"
+            android:onClick="viewComments"
+            android:text="@string/viewComments"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            tools:layout_editor_absoluteX="252dp"
+            tools:layout_editor_absoluteY="11dp" />
+
         <TextView
             android:id="@+id/textView12"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="8dp" />
 
         <Button
             android:id="@+id/button2"
@@ -110,7 +131,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
             app:strokeColor="@color/black" />
-
 
 
     </LinearLayout>
