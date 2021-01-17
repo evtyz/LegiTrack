@@ -17,6 +17,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ViewComments extends AppCompatActivity {
 
     private static final String TAG = "ViewComments";
@@ -27,10 +30,13 @@ public class ViewComments extends AppCompatActivity {
 
     public TextView newtextview2;
 
+    List<DBobjects> myList = new ArrayList<DBobjects>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_comments);
+
 
         //newtextview1.setText(testComment);
         //Intent intent = getIntent();
@@ -71,6 +77,7 @@ public class ViewComments extends AppCompatActivity {
                     Log.d(TAG, testObj.getComments());
                     Log.d(TAG, String.valueOf(testObj.getScore()));
                     Log.d(TAG, testObj.getId());
+
                 }
             }
         }
