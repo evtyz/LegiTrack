@@ -7,170 +7,131 @@
     android:background="@color/pale_green"
     android:textAlignment="center"
     tools:context=".Reaction">
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="290dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="86dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/lato"
-        android:text="@string/bill_name"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/push"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="200dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/lato"
-        android:onClick="pushtoDB"
-        android:text="@string/reaction_done"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reaction_test" /><![CDATA[
-
-
-
-
-
-
-
-    app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ]]>
-
-    <Button
-        android:id="@+id/view_Comments3"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="138dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="198dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:fontFamily="@font/lato"
-        android:onClick="viewComments"
-        android:text="@string/viewComments"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/reaction_test"
-        android:layout_width="293dp"
-        android:layout_height="267dp"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="290dp"
-        android:layout_marginEnd="59dp"
-        android:autofillHints=""
-        android:background="@android:drawable/edit_text"
-        android:backgroundTint="@color/white"
-        android:drawableTint="@color/white"
-        android:ems="10"
-        android:fontFamily="@font/lato"
-        android:foregroundTint="@color/white"
-        android:hint="@string/comment"
-        android:inputType="textLongMessage"
-        android:paddingStart="7dp"
-        android:paddingEnd="2dp"
-        android:paddingBottom="230dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/black"
-        android:textColorHint="@color/black"
-        android:textColorLink="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="297dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="182dp"
-        android:layout_marginEnd="57dp"
-        android:backgroundTint="@color/black"
-        android:indeterminateTint="@color/black"
-        android:max="5"
-        android:progressBackgroundTint="@color/black"
-        android:progressTint="@color/black"
-        android:secondaryProgressTint="@color/black"
-        android:thumbTint="@color/black"
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tickMarkTint="@color/black" />
+        app:layout_constraintBottom_toBottomOf="parent">
+        
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="115dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="215dp"
-        android:layout_marginEnd="280dp"
-        android:text="@string/oppose"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:text="@string/bill_name"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="293dp"
-        android:layout_marginTop="215dp"
-        android:layout_marginEnd="40dp"
-        android:text="@string/support"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="297dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/black"
+                android:indeterminateTint="@color/black"
+                android:max="5"
+                android:progressBackgroundTint="@color/black"
+                android:progressTint="@color/black"
+                android:secondaryProgressTint="@color/black"
+                android:thumbTint="@color/black"
+                app:tickMarkTint="@color/black" />
+
+            <LinearLayout
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textView"
+                    android:text="@string/oppose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="200dp"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/support"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/reaction_test"
+                android:layout_width="293dp"
+                android:layout_height="267dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:autofillHints=""
+                android:background="@android:drawable/edit_text"
+                android:backgroundTint="@color/white"
+                android:drawableTint="@color/white"
+                android:ems="10"
+                android:fontFamily="@font/lato"
+                android:foregroundTint="@color/white"
+                android:hint="@string/comment"
+                android:inputType="textLongMessage"
+                android:paddingStart="7dp"
+                android:paddingEnd="2dp"
+                android:paddingBottom="230dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/black"
+                android:textColorHint="@color/black"
+                android:textColorLink="@color/black" />
+            <Button
+                android:layout_margin="20dp"
+                android:id="@+id/push"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="200dp"
+                android:layout_height="51dp"
+                android:fontFamily="@font/lato"
+                android:onClick="pushtoDB"
+                android:text="@string/reaction_done"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/view_Comments3"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="200dp"
+                android:layout_height="51dp"
+                android:fontFamily="@font/lato"
+                android:onClick="viewComments"
+                android:text="@string/viewComments"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

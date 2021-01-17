@@ -123,12 +123,21 @@ public class Bill implements Serializable, Comparable<Bill> {
         String y2;
         try {
             y2 = title.substring(i+2);
+
+            if (summary.equals("")) {
+                summary = "Summary: " + y2;
+            } else {
+                summary = "Summary: " + y2 + "... " + summary;
+            }
         } catch (StringIndexOutOfBoundsException e) {
-            y2 = "None";
+            if (summary.equals("")) {
+                summary = "Summary: None";
+            } else {
+                summary = "Summary: ".concat(summary);
+            }
         }
 
         title = y1;
-        summary = "Summary: " + y2;
         publicID = "Bill ID: " + publicID;
     }
 }

@@ -116,7 +116,9 @@ public class QuerySelector extends AppCompatActivity {
         // TODO: validate search results
         String rawQuery = searchbar.getText().toString();
         List<String> terms = new ArrayList<>(Arrays.asList(rawQuery.split("\\s+")));
-        terms.remove(0);
+        if (terms.get(0).equals("")) {
+            terms.remove(0);
+        }
         if (terms.size() == 0) {
             Toast.makeText(getApplicationContext(), "Please enter a non-empty search query. Click PROCEED WITHOUT SEARCHING to find bills without a search.", Toast.LENGTH_LONG).show();
             return;

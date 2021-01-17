@@ -97,6 +97,7 @@ public class Reaction extends AppCompatActivity {
 
     public void viewComments(View view) {
         Intent intent = new Intent(getApplicationContext(), ViewComments.class);
+        intent.putExtra("thisBill", newBill);
         startActivity(intent);
 
     }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LegiTrack</string>
     <string name="welcome_msg">WELCOME!</string>
-    <string name="welcome_msg2">Let"s get started! First, tell us where you are:</string>
+    <string name="welcome_msg2">Let\'s get started! First, tell us where you are:</string>
     <string name="cont">CONTINUE</string>
     <string name="interest">Choose your topics of interest:</string>
     <string name="done">DONE</string>
