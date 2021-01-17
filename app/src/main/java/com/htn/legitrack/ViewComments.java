@@ -22,6 +22,8 @@ public class ViewComments extends AppCompatActivity {
 
     private static final String TAG = "ViewComments";
     String testComment;
+    TextView urlView;
+    Bill bill;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
@@ -33,15 +35,19 @@ public class ViewComments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_comments);
 
+        urlView = findViewById(R.id.newtextview1);
+        Intent intent = getIntent();
+        bill = (Bill)intent.getSerializableExtra("bill");
+        loadBill(bill);
+
         //newtextview1.setText(testComment);
-        //Intent intent = getIntent();
         //newBill = (Bill) getIntent().getSerializableExtra("Bill");
 
         newtextview2 = (TextView) findViewById(R.id.newtextview2);
 
         // Read from the database
         //myRef.addValueEventListener(new ValueEventListener() {
-        ValueEventListener postListener = new ValueEventListener() {
+        /*ValueEventListener postListener = new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -62,9 +68,11 @@ public class ViewComments extends AppCompatActivity {
             }
 
 
-        }//)
-                ;
-        myRef.addValueEventListener(postListener);
+        };
+        myRef.addValueEventListener(postListener);*/
+    }
+    private void loadBill(Bill bill) {
+        urlView.setText(bill.publicID);
     }
 
     public void sendComment(View view) {
@@ -73,17 +81,4 @@ public class ViewComments extends AppCompatActivity {
         startActivity(intent);
 
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
 }
