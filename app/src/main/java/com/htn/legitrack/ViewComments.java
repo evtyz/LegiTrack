@@ -72,9 +72,9 @@ public class ViewComments extends AppCompatActivity {
             public void showData(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
                     String key = ds.getKey();
-                    Log.d(TAG, key);
                     DBobjects testObj = new DBobjects();
                     testObj.setComments(ds.getValue(DBobjects.class).getComments());
+                    Log.d(TAG, testObj.getComments());
                     //);dataSnapshot.child(key).getValue(DBobjects.class);
                     //for (DataSnapshot newDs: ds.getChildren())
                     /*{
