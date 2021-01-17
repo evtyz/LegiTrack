@@ -48,6 +48,8 @@ public class ViewComments extends AppCompatActivity {
         newtextview1 = (TextView) findViewById(R.id.newtextview1);
         newtextview2 = (TextView) findViewById(R.id.newtextview2);
 
+        newtextview1.setText(newBill.publicID);
+
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             //ValueEventListener postListener = new ValueEventListener() {
@@ -82,15 +84,24 @@ public class ViewComments extends AppCompatActivity {
             Log.d(TAG, String.valueOf(testObj.getScore()));
             Log.d(TAG, testObj.getId());
 
-            if (newBill.id == testObj.id) {
+            if (newBill.id.equals(testObj.id)) {
                 myList.add(testObj);
+                Log.d(TAG, "it worked");
             }
 
             for (int i = 0; i < myList.size(); i++ )
             {
                 testComment = testComment + "\n\n" + myList.get(i).comments;
-                newtextview1.setText(testComment);
+                Log.d(TAG, testComment);
+                newtextview2.setText(testComment);
             }
             }
+    }
+
+    public void sendComment(View view) {
+        Intent intent = new Intent(getApplicationContext(), Reaction.class);
+        intent.putExtra("Bill", bill);
+        startActivity(intent);
+
     }
 }
