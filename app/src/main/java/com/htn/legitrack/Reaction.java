@@ -94,6 +94,13 @@ public class Reaction extends AppCompatActivity {
 
         finish();
         }
+
+    public void viewComments(View view) {
+        Intent intent = new Intent(getApplicationContext(), ViewComments.class);
+        startActivity(intent);
+
+    }
+
     }
 
 

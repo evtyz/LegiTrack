@@ -54,12 +54,15 @@
             android:id="@+id/bill_info_subjects"
             android:layout_width="match_parent"
             android:layout_height="73dp"
+            android:autoLink="web"
             android:background="@color/white"
+            android:linksClickable="true"
             android:text="@string/subject"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
             android:textColorHighlight="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColorHint="@color/black"
+            android:textColorLink="#0A1F8C" />
 
         <TextView
             android:id="@+id/textView9"
@@ -91,6 +94,11 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/button2"
             style="@style/Widget.AppCompat.Button.Colored"
@@ -103,10 +111,8 @@
             android:textColor="@color/black"
             app:strokeColor="@color/black" />
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
+
     </LinearLayout>
 
 </LinearLayout>

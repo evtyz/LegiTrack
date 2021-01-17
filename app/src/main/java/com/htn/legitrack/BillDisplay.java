@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -58,5 +59,11 @@ public class BillDisplay extends AppCompatActivity {
         };
 
         recyclerView.addOnScrollListener(scrollListener);
+    }
+
+    public void viewComments(View view) {
+        Intent intent = new Intent(getApplicationContext(), ViewComments.class);
+        startActivity(intent);
+
     }
 }

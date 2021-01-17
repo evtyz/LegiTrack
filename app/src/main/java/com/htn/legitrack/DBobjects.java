@@ -13,6 +13,9 @@ public class DBobjects {
     public String comments; //comments from user
     public int score; //score 1-5
 
+    public DBobjects() {
+    }
+
     public DBobjects(String ID, String COMMENTS, int SCORE) {
         id = ID;
         comments = COMMENTS;
@@ -25,6 +28,10 @@ public class DBobjects {
 
     public void setComments(String COMMENTS) {
         this.comments = COMMENTS;
+    }
+
+    public String getComments() {
+        return this.comments;
     }
 
     public void setScore(int SCORE) {
