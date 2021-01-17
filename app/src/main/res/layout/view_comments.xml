@@ -34,7 +34,7 @@
         android:layout_marginTop="584dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato"
-        android:onClick="sendComment"
+        android:onClick="seeBillInfo"
         android:text="@string/back"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"

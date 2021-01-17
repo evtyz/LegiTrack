@@ -28,8 +28,8 @@
     <Button
         android:id="@+id/push"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="143dp"
-        android:layout_height="49dp"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
@@ -37,7 +37,7 @@
         android:onClick="pushtoDB"
         android:text="@string/reaction_done"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reaction_test" /><![CDATA[
@@ -76,22 +76,27 @@
     <Button
         android:id="@+id/view_Comments3"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="143dp"
-        android:layout_height="65dp"
+        android:layout_width="197dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="198dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/lato"
         android:onClick="viewComments"
         android:text="@string/viewComments"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="11dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/reaction_test"
         android:layout_width="293dp"
         android:layout_height="267dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="283dp"
+        android:layout_marginEnd="60dp"
         android:autofillHints=""
         android:background="@android:drawable/edit_text"
         android:backgroundTint="@color/white"
@@ -110,7 +115,9 @@
         android:textColorHint="@color/black"
         android:textColorLink="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -138,10 +145,12 @@
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="210dp"
+        android:layout_marginEnd="280dp"
         android:text="@string/oppose"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -151,9 +160,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="293dp"
         android:layout_marginTop="210dp"
+        android:layout_marginEnd="40dp"
         android:text="@string/support"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
