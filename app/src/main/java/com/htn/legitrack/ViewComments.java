@@ -1,5 +1,6 @@
 package com.htn.legitrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,21 +29,23 @@ public class ViewComments extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
 
-    public TextView newtextview2;
+    public TextView newtextview1;
 
     List<DBobjects> myList = new ArrayList<DBobjects>();
+    Bill newBill;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_comments);
 
-
-        //newtextview1.setText(testComment);
+        Intent intent = getIntent();
+        newBill = (Bill)intent.getSerializableExtra("thisBill");
         //Intent intent = getIntent();
         //newBill = (Bill) getIntent().getSerializableExtra("Bill");
 
-        //newtextview2 = (TextView) findViewById(R.id.newtextview2);
+        newtextview1 = (TextView) findViewById(R.id.newtextview1);
+        newtextview1.setText(newBill.publicID);
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

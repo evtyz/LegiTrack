@@ -63,7 +63,7 @@ public class BillInfo extends AppCompatActivity {
 
     public void viewComments(View view) {
         Intent intent = new Intent(getApplicationContext(), ViewComments.class);
-        intent.putExtra("theBill", bill);
+        intent.putExtra("thisBill", bill);
         startActivity(intent);
 
     }
