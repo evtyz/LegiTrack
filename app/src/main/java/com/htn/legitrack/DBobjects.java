@@ -13,7 +13,16 @@ public class DBobjects {
     public String comments; //comments from user
     public int score; //score 1-5
 
-    public DBobjects() {
+    DBobjects() {
+        comments = "";
+        id = "";
+        score = 99;
+    }
+
+    DBobjects(DBobjects myObj) {
+        id = myObj.id;
+        comments = myObj.comments;
+        score = myObj.score;
     }
 
     public DBobjects(String ID, String COMMENTS, int SCORE) {

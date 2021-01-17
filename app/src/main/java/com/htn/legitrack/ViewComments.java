@@ -39,31 +39,57 @@ public class ViewComments extends AppCompatActivity {
         newtextview2 = (TextView) findViewById(R.id.newtextview2);
 
         // Read from the database
-        //myRef.addValueEventListener(new ValueEventListener() {
-        ValueEventListener postListener = new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
+        //ValueEventListener postListener = new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                DBobjects myObj;
-                myObj = dataSnapshot.getValue(DBobjects.class);
-                //Log.d(TAG, "Comment: " + myObj.comments);
+                //testObj = dataSnapshot.getValue(DBobjects.class);
+                showData(dataSnapshot);
+                //testObj = dataSnapshot.getChildren();
+                //Log.d(TAG, "Comment: " + testObj.comments);
 
-                testComment = myObj.getComments();
-                newtextview2.setText(testComment);
+                //long count = dataSnapshot.getChildrenCount();
+                //Log.d(TAG, String.valueOf(count));
+
+                //boolean yayornay = dataSnapshot.exists();
+                //Log.d(TAG, Boolean.toString(yayornay));
+
+                //testComment = testObj.getComments();
+                //newtextview2.setText(testComment);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+                //Log.w(TAG, "Failed to read value.", error.toException());
+            }
+
+            public void showData(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot.getChildren()) {
+                    String key = ds.getKey();
+                    //DBobjects testObj = new DBobjects();
+                    //testObj.setComments(
+
+                    DBobjects testObj = new DBobjects( ds.child(key).getValue(DBobjects.class) );
+                    //String myStr = myObj.getComments();
+
+                    //String key = newSnapshot.getKey();
+                    //DatabaseReference newRef = myRef.child(key);
+                    Log.d(TAG, key);
+                    //testObj = dataSnapshot.child(key).getValue(DBobjects.class);
+                    Log.d(TAG, "Comment: " + testObj.getComments());
+                    //Log.d(TAG, myStr);
+                }
             }
 
 
-        }//)
+        })
         ;
-        myRef.addValueEventListener(postListener);
+        //myRef.addValueEventListener(postListener);
+        //myRef.addValueEventListener(postListener);
         }
 
 
