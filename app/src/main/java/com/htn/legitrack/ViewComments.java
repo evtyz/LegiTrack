@@ -1,13 +1,17 @@
 package com.htn.legitrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,16 +21,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class ViewComments extends AppCompatActivity {
 
     private static final String TAG = "ViewComments";
-    String testComment;
+    String comment;
     TextView urlView;
     Bill bill;
+    LinearLayoutManager layoutManager;
+    ArrayList<String> commentList;
+    RecyclerView recyclerView2;
+    EndlessRecyclerViewScrollListener scrollListener;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("message");
-
     public TextView newtextview2;
 
     @Override
@@ -36,8 +45,31 @@ public class ViewComments extends AppCompatActivity {
 
         urlView = findViewById(R.id.newtextview1);
         Intent intent = getIntent();
-        bill = (Bill)intent.getSerializableExtra("bill");
-        loadBill(bill);
+        comm = (String)intent.getSerializableExtra("comment");
+        loadComm(comment);
+
+        commentList = new ArrayList<>();
+        layoutManager = new LinearLayoutManager(this);
+
+        //comment = intent.getStringExtra(MainActivity.STATE_NAME);
+        comment = "test";
+        //queryTerms = intent.getStringArrayExtra(QuerySelector.QUERY_REF);
+        //Log.d("test", state);
+        recyclerView2 = findViewById(R.id.recycler_view);
+        //adapter = new BillListAdapter(getApplicationContext(), state, queryTerms);
+        layoutManager = new LinearLayoutManager(this);
+
+        //recyclerView.setAdapter(adapter);
+        recyclerView2.setLayoutManager(layoutManager);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                //adapter.loadBills();
+            }
+        };
+
+        recyclerView2.addOnScrollListener(scrollListener);
 
         //newtextview1.setText(testComment);
         //Intent intent = getIntent();

@@ -17,7 +17,7 @@ public class BillInfo extends AppCompatActivity {
     TextView subjectView;
     TextView urlView;
 
-    Bill bill;
+    public Bill bill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,7 @@ public class BillInfo extends AppCompatActivity {
 
     public void viewComments(View view) {
         Intent intent = new Intent(getApplicationContext(), ViewComments.class);
+        intent.putExtra("Bill", bill);
         startActivity(intent);
 
     }
