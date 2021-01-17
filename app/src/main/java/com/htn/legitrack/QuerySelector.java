@@ -50,6 +50,15 @@ public class QuerySelector extends AppCompatActivity {
         suggestionDisplay = findViewById(R.id.suggestion_display);
 
         Collections.sort(suggestions);
+        ArrayList<String> topPref = getTopThreePreferences();
+        for (String pref : topPref) {
+            int index = suggestions.indexOf(pref);
+            if (index != -1) {
+                suggestions.remove(index);
+            }
+            suggestions.add(0, pref);
+        }
+
         LayoutInflater layoutInflater = getLayoutInflater();
 
         for (String suggestion : suggestions) {
@@ -67,6 +76,18 @@ public class QuerySelector extends AppCompatActivity {
 
 
         state = getIntent().getStringExtra(MainActivity.STATE_NAME);
+    }
+
+    public ArrayList<String> getTopThreePreferences() {
+        ArrayList<String> topPref = new ArrayList<>();
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("save", Context.MODE_PRIVATE);
+        for (String key : new String[] {"third", "second", "first"}) {
+            String val = sp.getString(key, "");
+            if (!val.equals("")) {
+                topPref.add(val);
+            }
+        }
+        return topPref;
     }
 
     public void setTopThreePreferences(List<String> terms) {
@@ -105,11 +126,11 @@ public class QuerySelector extends AppCompatActivity {
         }
 
         setTopThreePreferences(terms);
-
+        String[] termArray = terms.toArray(new String[terms.size()]);
 
         Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
         intent.putExtra(MainActivity.STATE_NAME, state);
-        intent.putExtra(QUERY_REF, terms.toArray());
+        intent.putExtra(QUERY_REF, termArray);
         startActivity(intent);
 
     }
