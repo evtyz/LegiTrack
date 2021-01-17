@@ -28,7 +28,7 @@ public class ViewComments extends AppCompatActivity {
 
     //comments layout
     LinearLayout commentDisplay;
-    public static ArrayList<String> comments = new ArrayList<String>();
+    public ArrayList<String> comments = new ArrayList<String>();
     //public static int[] scores = new int[20];
 
     private static final String TAG = "ViewComments";
@@ -56,16 +56,6 @@ public class ViewComments extends AppCompatActivity {
         //comments layout cont.
         commentDisplay = findViewById(R.id.comment_display);
 
-        LayoutInflater layoutInflater = getLayoutInflater();
-
-        for (String comment : comments) {
-            View commentItem = layoutInflater.inflate(R.layout.comment_item, null);
-            LinearLayout commentLayout = commentItem.findViewById(R.id.comment_layout);
-            TextView commentLabel = commentItem.findViewById(R.id.comment_label);
-            commentLabel.setText(comment);
-
-            commentDisplay.addView(commentItem, -1, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        }
 
         newtextview1 = (TextView) findViewById(R.id.newtextview1);
         //newtextview2 = (TextView) findViewById(R.id.newtextview2);
@@ -110,16 +100,26 @@ public class ViewComments extends AppCompatActivity {
                 myList.add(testObj);
                 Log.d(TAG, "it worked");
             }
+        }
+        for (int i = 0; i < myList.size(); i++ )
+        {
+            comments.add( myList.get(i).getComments() );
+            //scores.add( myList.get(i).getScore() );
+            //testComment = testComment + "\n\n" + myList.get(i).comments;
+            //Log.d(TAG, testComment);
+            //newtextview2.setText(testComment);
+        }
 
-            for (int i = 0; i < myList.size(); i++ )
-            {
-                comments.add( myList.get(i).getComments() );
-                //scores.add( myList.get(i).getScore() );
-                //testComment = testComment + "\n\n" + myList.get(i).comments;
-                //Log.d(TAG, testComment);
-                //newtextview2.setText(testComment);
-            }
-            }
+        LayoutInflater layoutInflater = getLayoutInflater();
+
+        for (String comment : comments) {
+            View commentItem = layoutInflater.inflate(R.layout.comment_item, null);
+            TextView commentLabel = commentItem.findViewById(R.id.comment_label);
+            commentLabel.setText(comment);
+
+            commentDisplay.addView(commentItem, -1, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        }
+
     }
 
     public void seeBillInfo(View view) {
