@@ -22,7 +22,9 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillListViewHolder> {
     List<Bill> billList = new ArrayList<>();
@@ -41,6 +43,7 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
 
     private int updateCounter = 0;
 
+    private Set<String> IDsAlreadySeen = new HashSet<>();
 
     BillListAdapter(Context context, String state, String[] queryTerms) {
         queue = Volley.newRequestQueue(context);
@@ -94,14 +97,15 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
                     .concat("&per_page=20")
                     .concat("&page=")
                     .concat(Integer.toString(pageLoaded));
+            ArrayList<Bill> addedBills = new ArrayList<>();
             for (String term : queryTerms) {
                 String url = urlbase.concat("&q=").concat(term);
-
-                ArrayList<Bill> addedBills = new ArrayList<>();
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
                     try {
                         JSONArray results = response.getJSONArray("results");
+
+                        updateCounter += 1;
                         if (results.length() == 0) {
                             return;
                         }
@@ -110,10 +114,15 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
                             addedBills.add(bill);
                         }
 
-                        updateCounter += 1;
                         if (updateCounter % queryTerms.length == 0) {
                             Collections.sort(addedBills);
-                            billList.addAll(addedBills);
+                            Collections.reverse(addedBills);
+                            for (Bill bill : addedBills) {
+                                if (IDsAlreadySeen.add(bill.id)) {
+                                    billList.add(bill);
+                                }
+                            }
+
                             notifyDataSetChanged();
                         }
 
@@ -121,7 +130,10 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
                     } catch (JSONException e) {
                         Log.e("JSON", "Json error");
                     }
-                }, error -> Log.e("Volley", "Volley error"));
+                }, error -> {
+                    error.printStackTrace();
+                    Log.e("Volley", "Volley error");
+                });
                 queue.add(request);
             }
         }

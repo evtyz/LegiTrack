@@ -20,6 +20,10 @@ public class QuerySelector extends AppCompatActivity {
 
     public static final String QUERY_REF = "query";
 
+    public static final String[] suggestions = new String[] {
+            // Add suggestions here...
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
