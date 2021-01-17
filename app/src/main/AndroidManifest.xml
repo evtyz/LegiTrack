@@ -3,8 +3,7 @@
     package="com.htn.legitrack">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LegiTrack"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InterestChooser"></activity>
+        <activity android:name=".QuerySelector"></activity>
+        <activity android:name=".InterestChooser" />
         <activity android:name=".BillDisplay" />
         <activity android:name=".Reaction" />
         <activity android:name=".BillInfo" />

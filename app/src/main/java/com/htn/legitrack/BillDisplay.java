@@ -28,7 +28,7 @@ public class BillDisplay extends AppCompatActivity {
     ArrayList<Bill> billList;
     RecyclerView recyclerView;
     String state;
-    ArrayList<String> interests;
+    String[] queryTerms;
 
     EndlessRecyclerViewScrollListener scrollListener;
 
@@ -40,11 +40,11 @@ public class BillDisplay extends AppCompatActivity {
         //Joe's test
         Intent intent = getIntent();
         state = intent.getStringExtra(MainActivity.STATE_NAME);
-        interests = intent.getStringArrayListExtra(InterestChooser.INTEREST_NAME);
+        queryTerms = intent.getStringArrayExtra(QuerySelector.QUERY_REF);
         Log.d("test", state);
         billList = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler_view);
-        adapter = new BillListAdapter(getApplicationContext(), state, interests);
+        adapter = new BillListAdapter(getApplicationContext(), state, queryTerms);
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setAdapter(adapter);

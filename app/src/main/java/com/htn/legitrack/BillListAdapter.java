@@ -19,9 +19,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillListViewHolder> {
@@ -35,73 +35,103 @@ public class BillListAdapter extends RecyclerView.Adapter<BillListAdapter.BillLi
 
     private int pageLoaded;
 
-    private int num_bills_loaded;
+    private int numPagesLoaded;
 
-    private ArrayList<String> subjects;
+    private String[] queryTerms;
+
+    private int updateCounter = 0;
 
 
-    BillListAdapter(Context context, String state, ArrayList<String> subjects) {
+    BillListAdapter(Context context, String state, String[] queryTerms) {
         queue = Volley.newRequestQueue(context);
         this.state = state;
         pageLoaded = 1;
-
-        num_bills_loaded = 0;
-        this.subjects = subjects;
+        this.queryTerms = queryTerms;
         loadBills();
     }
 
     public void loadBills() {
 
-        if (pageLoaded > 3) {
+        // Stop loading legislation after 3 pages.
+        if (pageLoaded * queryTerms.length > 3 || pageLoaded > 3) {
             return;
         }
 
-        String url = "https://v3.openstates.org/bills?jurisdiction="
-                .concat(state)
-                .concat("&apikey=")
-                .concat(APIKEY)
-                .concat("&include=abstracts&include=sources")
-                .concat("&per_page=20")
-                .concat("&page=")
-                .concat(Integer.toString(pageLoaded)); // TODO
-        pageLoaded++;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-            try {
-                JSONArray results = response.getJSONArray("results");
-                if (results.length() == 0) {
-                    return;
-                }
-                for (int i = 0; i < results.length(); i++) {
-                    Bill bill = new Bill(results.getJSONObject(i));
-                    if (compareTwoLists(subjects, bill.subjects) || subjects.size() == 0) {
-                        billList.add(bill);
-                        num_bills_loaded++;
+        if (queryTerms.length == 0) {
+            String url = "https://v3.openstates.org/bills?jurisdiction="
+                    .concat(state)
+                    .concat("&apikey=")
+                    .concat(APIKEY)
+                    .concat("&include=abstracts&include=sources")
+                    .concat("&per_page=20")
+                    .concat("&page=")
+                    .concat(Integer.toString(pageLoaded)); // TODO
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+                try {
+                    JSONArray results = response.getJSONArray("results");
+                    if (results.length() == 0) {
+                        return;
                     }
-                    // TODO: do something to the bill
-                }
+                    for (int i = 0; i < results.length(); i++) {
+                        Bill bill = new Bill(results.getJSONObject(i));
+                        billList.add(bill);
+                        // TODO: do something to the bill
+                    }
+                    notifyDataSetChanged();
 
-                if (num_bills_loaded < NUM_BILLS_PER_PAGE) {
-                    loadBills();
+                    //                notifyItemRangeInserted(start, ITEMS_PER_PAGE);
+                } catch (JSONException e) {
+                    Log.e("JSON", "Json error");
                 }
-                notifyDataSetChanged();
-                //                notifyItemRangeInserted(start, ITEMS_PER_PAGE);
-            } catch (JSONException e) {
-                Log.e("JSON", "Json error");
-            }
-        }, error -> Log.e("Volley", "Volley error"));
-        queue.add(request);
-    }
+            }, error -> Log.e("Volley", "Volley error"));
+            queue.add(request);
+        } else {
+            String urlbase = "https://v3.openstates.org/bills?jurisdiction="
+                    .concat(state)
+                    .concat("&apikey=")
+                    .concat(APIKEY)
+                    .concat("&include=abstracts&include=sources")
+                    .concat("&per_page=20")
+                    .concat("&page=")
+                    .concat(Integer.toString(pageLoaded));
+            for (String term : queryTerms) {
+                String url = urlbase.concat("&q=").concat(term);
 
-    public static boolean compareTwoLists(ArrayList<String> a, ArrayList<String> b) {
-        for (String wordA : a) {
-            for (String wordB : b) {
-                if (wordA.equals(wordB)) {
-                    return true;
-                }
+                ArrayList<Bill> addedBills = new ArrayList<>();
+
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+                    try {
+                        JSONArray results = response.getJSONArray("results");
+                        if (results.length() == 0) {
+                            return;
+                        }
+                        for (int i = 0; i < results.length(); i++) {
+                            Bill bill = new Bill(results.getJSONObject(i));
+                            addedBills.add(bill);
+                        }
+
+                        updateCounter += 1;
+                        if (updateCounter % queryTerms.length == 0) {
+                            Collections.sort(addedBills);
+                            billList.addAll(addedBills);
+                            notifyDataSetChanged();
+                        }
+
+                        //                notifyItemRangeInserted(start, ITEMS_PER_PAGE);
+                    } catch (JSONException e) {
+                        Log.e("JSON", "Json error");
+                    }
+                }, error -> Log.e("Volley", "Volley error"));
+                queue.add(request);
             }
         }
-        return false;
+
+        pageLoaded++;
+
+
+
     }
+
 
     @NonNull
     @Override
