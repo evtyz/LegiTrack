@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -22,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewComments extends AppCompatActivity {
+
+    //comments layout
+    LinearLayout commentDisplay;
+    public static ArrayList<String> comments = new ArrayList<String>();
 
     private static final String TAG = "ViewComments";
     String testComment = "";
@@ -91,6 +96,7 @@ public class ViewComments extends AppCompatActivity {
 
             for (int i = 0; i < myList.size(); i++ )
             {
+                comments.add( myList.get(i).getComments() );
                 testComment = testComment + "\n\n" + myList.get(i).comments;
                 Log.d(TAG, testComment);
                 newtextview2.setText(testComment);
