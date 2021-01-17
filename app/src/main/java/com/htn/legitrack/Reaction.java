@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +27,8 @@ public class Reaction extends AppCompatActivity {
     String comment;
 
     Bill newBill;
+
+    public TextView textView4;
     //Bill newBill = (Bill) getIntent().getSerializableExtra("MyClass");
 
     //Test code for pushing objects to the DB
@@ -41,6 +44,8 @@ public class Reaction extends AppCompatActivity {
 
         //Intent intent = getIntent();
         newBill = (Bill) getIntent().getSerializableExtra("Bill");
+        textView4 = (TextView) findViewById(R.id.textView4);
+        textView4.setText(newBill.publicID);
     }
 
 
