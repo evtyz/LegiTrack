@@ -121,7 +121,7 @@ public class ViewComments extends AppCompatActivity {
             TextView commentLabel = commentItem.findViewById(R.id.comment_label);
             commentLabel.setText(comment);
 
-            commentDisplay.addView(commentItem, -1, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            commentDisplay.addView(commentItem, -1, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
 
         average = summer / myList.size();
