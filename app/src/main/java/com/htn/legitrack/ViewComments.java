@@ -46,19 +46,9 @@ public class ViewComments extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                //testObj = dataSnapshot.getValue(DBobjects.class);
+
                 showData(dataSnapshot);
-                //testObj = dataSnapshot.getChildren();
-                //Log.d(TAG, "Comment: " + testObj.comments);
 
-                //long count = dataSnapshot.getChildrenCount();
-                //Log.d(TAG, String.valueOf(count));
-
-                //boolean yayornay = dataSnapshot.exists();
-                //Log.d(TAG, Boolean.toString(yayornay));
-
-                //testComment = testObj.getComments();
-                //newtextview2.setText(testComment);
             }
 
             @Override
@@ -73,27 +63,14 @@ public class ViewComments extends AppCompatActivity {
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
                     String key = ds.getKey();
                     DBobjects testObj = new DBobjects();
-                    testObj.setComments(ds.getValue(DBobjects.class).getComments());
-                    Log.d(TAG, testObj.getComments());
-                    //);dataSnapshot.child(key).getValue(DBobjects.class);
-                    //for (DataSnapshot newDs: ds.getChildren())
-                    /*{
-                        String myStr = newDs.getValue(String.class);
-                        //DBobjects newObj =  newDs.getValue(DBobjects.class);
-                        Log.d(TAG, key);
-                    }*/
-                }
-                    //DBobjects testObj = new DBobjects();
-                    //testObj.setComments(
-                    //DataSnapshot newDs =
-                    //DBobjects testObj = ds.child(key).getValue(DBobjects.class);
-                    //String myStr = myObj.getComments();
 
-                    //String key = newSnapshot.getKey();
-                    //DatabaseReference newRef = myRef.child(key);
-                    //Log.d(TAG, key);
-                    //testObj = dataSnapshot.child(key).getValue(DBobjects.class);
-                    //Log.d(TAG, "Comment: " + testObj.getComments());
-                    //Log.d(TAG, myStr);
+                    testObj.setComments(ds.getValue(DBobjects.class).getComments());
+                    testObj.setScore(ds.getValue(DBobjects.class).getScore());
+                    testObj.setId(ds.getValue(DBobjects.class).getId());
+
+                    Log.d(TAG, testObj.getComments());
+                    Log.d(TAG, String.valueOf(testObj.getScore()));
+                    Log.d(TAG, testObj.getId());
                 }
             }
+        }

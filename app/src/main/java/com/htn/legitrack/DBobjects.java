@@ -46,4 +46,16 @@ public class DBobjects {
     public void setScore(int SCORE) {
         this.score = SCORE;
     }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public void setId(String ID) {
+        this.id = ID;
+    }
+
+    public String getId() {
+        return this.id;
+    }
 }
