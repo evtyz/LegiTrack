@@ -1,5 +1,6 @@
 package com.htn.legitrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,9 +63,17 @@ public class ViewComments extends AppCompatActivity {
 
 
         }//)
-        ;
+                ;
         myRef.addValueEventListener(postListener);
-        }
+    }
+
+    public void sendComment(View view) {
+        Intent intent = new Intent(getApplicationContext(), Reaction.class);
+        intent.putExtra("Bill", bill);
+        startActivity(intent);
+
+    }
+}
 
 
 
