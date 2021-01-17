@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class UserInfo {
     public String state; // user's stored state
-    public ArrayList<String> interests = new ArrayList<>(); // user's stored interests
+    public String interests; // user's stored interests
 
     public UserInfo() {
         state = "";
-        interests = {};
+        interests = "";
     }
 
     public UserInfo(UserInfo myObj) {
@@ -21,7 +21,7 @@ public class UserInfo {
         interests = myObj.interests;
     }
 
-    public UserInfo(String State, ArrayList<String> Interests) {
+    public UserInfo(String State, String Interests) {
         state = State;
         interests = Interests;
     }
