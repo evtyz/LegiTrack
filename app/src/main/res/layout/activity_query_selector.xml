@@ -28,12 +28,14 @@
     </ScrollView>
 
     <Button
+        android:textColor="@color/white"
         android:onClick="search"
         android:id="@+id/gosearch_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SEARCH" />
     <Button
+        android:textColor="@color/white"
         android:onClick="proceed"
         android:id="@+id/nosearch_button"
         android:layout_width="match_parent"
