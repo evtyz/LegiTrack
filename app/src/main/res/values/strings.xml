@@ -20,4 +20,6 @@
     <string name="viewComments">VIEW COMMENTS</string>
     <string name="commentsList">Comments:</string>
     <string name="back">BACK</string>
+    <string name="avg_score">AVERAGE SCORE: </string>
+    <string name="avg_score_num">0 </string>
 </resources>

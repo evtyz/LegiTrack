@@ -39,9 +39,11 @@ public class ViewComments extends AppCompatActivity {
 
     public TextView newtextview1;
     public TextView newtextview2;
+    public TextView averageScoreNumber;
 
     List<DBobjects> myList = new ArrayList<DBobjects>();
     Bill newBill;
+    int counter, summer, average;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,10 @@ public class ViewComments extends AppCompatActivity {
 
 
         newtextview1 = (TextView) findViewById(R.id.newtextview1);
-        //newtextview2 = (TextView) findViewById(R.id.newtextview2);
+        averageScoreNumber = (TextView) findViewById(R.id.averageScoreNumber);
 
         newtextview1.setText(newBill.publicID);
+
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -104,7 +107,7 @@ public class ViewComments extends AppCompatActivity {
         for (int i = 0; i < myList.size(); i++ )
         {
             comments.add( myList.get(i).getComments() );
-            //scores.add( myList.get(i).getScore() );
+            summer = summer + myList.get(i).getScore();
             //testComment = testComment + "\n\n" + myList.get(i).comments;
             //Log.d(TAG, testComment);
             //newtextview2.setText(testComment);
@@ -119,6 +122,9 @@ public class ViewComments extends AppCompatActivity {
 
             commentDisplay.addView(commentItem, -1, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
+
+        average = summer / myList.size();
+        averageScoreNumber.setText(String.valueOf(average));
 
     }
 
