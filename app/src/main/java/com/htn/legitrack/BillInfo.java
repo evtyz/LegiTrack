@@ -58,13 +58,19 @@ public class BillInfo extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Reaction.class);
         intent.putExtra("Bill", bill);
         startActivity(intent);
-
     }
 
     public void viewComments(View view) {
         Intent intent = new Intent(getApplicationContext(), ViewComments.class);
         intent.putExtra("thisBill", bill);
         startActivity(intent);
+    }
 
+    public void share(View v) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, bill.title);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, bill.sources.get(0));
+        startActivity(Intent.createChooser(shareIntent, "Share via"));
     }
 }
