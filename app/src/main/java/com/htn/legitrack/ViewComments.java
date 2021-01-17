@@ -36,29 +36,19 @@ public class ViewComments extends AppCompatActivity {
         //Intent intent = getIntent();
         //newBill = (Bill) getIntent().getSerializableExtra("Bill");
 
-        newtextview2 = (TextView) findViewById(R.id.newtextview2);
+        //newtextview2 = (TextView) findViewById(R.id.newtextview2);
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
-        //ValueEventListener postListener = new ValueEventListener() {
+            //ValueEventListener postListener = new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                //testObj = dataSnapshot.getValue(DBobjects.class);
+
                 showData(dataSnapshot);
-                //testObj = dataSnapshot.getChildren();
-                //Log.d(TAG, "Comment: " + testObj.comments);
 
-                //long count = dataSnapshot.getChildrenCount();
-                //Log.d(TAG, String.valueOf(count));
-
-                //boolean yayornay = dataSnapshot.exists();
-                //Log.d(TAG, Boolean.toString(yayornay));
-
-                //testComment = testObj.getComments();
-                //newtextview2.setText(testComment);
             }
 
             @Override
@@ -66,41 +56,21 @@ public class ViewComments extends AppCompatActivity {
                 // Failed to read value
                 //Log.w(TAG, "Failed to read value.", error.toException());
             }
+        });
+    }
 
             public void showData(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
                     String key = ds.getKey();
-                    //DBobjects testObj = new DBobjects();
-                    //testObj.setComments(
+                    DBobjects testObj = new DBobjects();
 
-                    DBobjects testObj = new DBobjects( ds.child(key).getValue(DBobjects.class) );
-                    //String myStr = myObj.getComments();
+                    testObj.setComments(ds.getValue(DBobjects.class).getComments());
+                    testObj.setScore(ds.getValue(DBobjects.class).getScore());
+                    testObj.setId(ds.getValue(DBobjects.class).getId());
 
-                    //String key = newSnapshot.getKey();
-                    //DatabaseReference newRef = myRef.child(key);
-                    Log.d(TAG, key);
-                    //testObj = dataSnapshot.child(key).getValue(DBobjects.class);
-                    Log.d(TAG, "Comment: " + testObj.getComments());
-                    //Log.d(TAG, myStr);
+                    Log.d(TAG, testObj.getComments());
+                    Log.d(TAG, String.valueOf(testObj.getScore()));
+                    Log.d(TAG, testObj.getId());
                 }
             }
-
-
-        })
-        ;
-        //myRef.addValueEventListener(postListener);
-        //myRef.addValueEventListener(postListener);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-}
