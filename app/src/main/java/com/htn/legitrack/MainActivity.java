@@ -2,7 +2,9 @@ package com.htn.legitrack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String STATE_NAME = "com.htn.legitrack.STATE_NAME";
     String stateName;
     Spinner dropdown;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,18 @@ public class MainActivity extends AppCompatActivity {
 
         //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+
+        Context context = getApplicationContext();
+        sp = context.getSharedPreferences("save", Context.MODE_PRIVATE);
+        String state = sp.getString("state", "Alabama");
+        int index = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].equals(state)) {
+                index = i;
+                break;
+            }
+        }
+        dropdown.setSelection(index);
     }
 
     /*public class MySpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
@@ -53,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendState(View view) {
         stateName = dropdown.getSelectedItem().toString();
+        SharedPreferences.Editor spe = sp.edit();
+        spe.putString("state", stateName);
+        spe.apply();
         //String stateName = "North Carolina";
         Intent intent = new Intent(getApplicationContext(), QuerySelector.class);
         intent.putExtra(STATE_NAME, stateName);

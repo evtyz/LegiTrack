@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class QuerySelector extends AppCompatActivity {
 
@@ -65,23 +69,47 @@ public class QuerySelector extends AppCompatActivity {
         state = getIntent().getStringExtra(MainActivity.STATE_NAME);
     }
 
+    public void setTopThreePreferences(List<String> terms) {
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("save", Context.MODE_PRIVATE);
+        SharedPreferences.Editor spe = sp.edit();
+        for (String term : terms) {
+            insertTerm(term, sp, spe);
+            spe.commit();
+        }
+//        String first = sp.getString("first", "");
+//        String second = sp.getString("second", "");
+//        String third = sp.getString("third","");
+//        String fourth = sp.getString("fourth", "");
+
+    }
+
+    private void insertTerm(String term, SharedPreferences sp, SharedPreferences.Editor spe) {
+        String first = sp.getString("first", "");
+        String second = sp.getString("second", "");
+        spe.putString("third", second);
+        spe.putString("second", first);
+        spe.putString("first", term);
+    }
+
     public void search(View v) {
         // TODO: validate search results
         String rawQuery = searchbar.getText().toString();
-
-        String[] terms = rawQuery.split("\\s+");
-
-        if (terms.length == 1 && terms[0].equals("")) {
+        List<String> terms = new ArrayList<>(Arrays.asList(rawQuery.split("\\s+")));
+        terms.remove(0);
+        if (terms.size() == 0) {
             Toast.makeText(getApplicationContext(), "Please enter a non-empty search query. Click PROCEED WITHOUT SEARCHING to find bills without a search.", Toast.LENGTH_LONG).show();
             return;
-        } if (terms.length > 3) {
+        } if (terms.size() > 3) {
             Toast.makeText(getApplicationContext(), "Please enter 3 search terms or fewer.", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        setTopThreePreferences(terms);
+
+
         Intent intent = new Intent(getApplicationContext(), BillDisplay.class);
         intent.putExtra(MainActivity.STATE_NAME, state);
-        intent.putExtra(QUERY_REF, terms);
+        intent.putExtra(QUERY_REF, terms.toArray());
         startActivity(intent);
 
     }
