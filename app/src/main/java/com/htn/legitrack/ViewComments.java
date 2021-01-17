@@ -100,8 +100,7 @@ public class ViewComments extends AppCompatActivity {
 
     public void seeBillInfo(View view) {
         Intent intent = new Intent(getApplicationContext(), BillInfo.class);
-        intent.putExtra("Bill", newBill);
+        //intent.putExtra("Bill", newBill);
         startActivity(intent);
-
     }
 }
