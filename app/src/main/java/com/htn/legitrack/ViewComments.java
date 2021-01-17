@@ -3,7 +3,9 @@ package com.htn.legitrack;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -27,6 +29,7 @@ public class ViewComments extends AppCompatActivity {
     //comments layout
     LinearLayout commentDisplay;
     public static ArrayList<String> comments = new ArrayList<String>();
+    //public static int[] scores = new int[20];
 
     private static final String TAG = "ViewComments";
     String testComment = "";
@@ -50,8 +53,22 @@ public class ViewComments extends AppCompatActivity {
         //Intent intent = getIntent();
         //newBill = (Bill) getIntent().getSerializableExtra("Bill");
 
+        //comments layout cont.
+        commentDisplay = findViewById(R.id.comment_display);
+
+        LayoutInflater layoutInflater = getLayoutInflater();
+
+        for (String comment : comments) {
+            View commentItem = layoutInflater.inflate(R.layout.comment_item, null);
+            LinearLayout commentLayout = commentItem.findViewById(R.id.comment_layout);
+            TextView commentLabel = commentItem.findViewById(R.id.comment_label);
+            commentLabel.setText(comment);
+
+            commentDisplay.addView(commentItem, -1, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        }
+
         newtextview1 = (TextView) findViewById(R.id.newtextview1);
-        newtextview2 = (TextView) findViewById(R.id.newtextview2);
+        //newtextview2 = (TextView) findViewById(R.id.newtextview2);
 
         newtextview1.setText(newBill.publicID);
 
@@ -97,9 +114,10 @@ public class ViewComments extends AppCompatActivity {
             for (int i = 0; i < myList.size(); i++ )
             {
                 comments.add( myList.get(i).getComments() );
-                testComment = testComment + "\n\n" + myList.get(i).comments;
-                Log.d(TAG, testComment);
-                newtextview2.setText(testComment);
+                //scores.add( myList.get(i).getScore() );
+                //testComment = testComment + "\n\n" + myList.get(i).comments;
+                //Log.d(TAG, testComment);
+                //newtextview2.setText(testComment);
             }
             }
     }
