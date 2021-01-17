@@ -6,7 +6,7 @@
     <string name="interest">Choose your topics of interest:</string>
     <string name="done">DONE</string>
     <string name="bill_display">Upcoming Bills</string>
-    <string name="underline">_________________</string>
+    <string name="underline">________________________</string>
     <string name="reaction_title">Reactions Page</string>
     <string name="reaction_done">SUBMIT</string>
     <string name="bill_name">Bill H.R. 2234</string>
@@ -17,4 +17,6 @@
     <string name="comment">Comment Here:</string>
     <string name="oppose">Oppose</string>
     <string name="support">Support</string>
+    <string name="viewComments">VIEW COMMENTS</string>
+    <string name="back">BACK</string>
 </resources>

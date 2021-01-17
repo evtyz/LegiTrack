@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public void sendState(View view) {
         stateName = dropdown.getSelectedItem().toString();
         //String stateName = "North Carolina";
-        Intent intent = new Intent(getApplicationContext(), InterestChooser.class);
+        Intent intent = new Intent(getApplicationContext(), QuerySelector.class);
         intent.putExtra(STATE_NAME, stateName);
         startActivity(intent);
 
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     public void gotoreaction(View view) {
         Intent intent = new Intent(getApplicationContext(), Reaction.class);
         startActivity(intent);
-
     }
 
     public void gotointerest(View view) {

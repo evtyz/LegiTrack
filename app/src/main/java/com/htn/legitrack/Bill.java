@@ -7,12 +7,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Bill implements Serializable {
+public class Bill implements Serializable, Comparable<Bill> {
     public String id; // Open states id, never display!
 
-    public String time; // Open States time for "latest action date"
+    public Date time; // Open States time for "latest action date"
 
     public String action; // What did the legislators actually do on the bill?
 
@@ -27,6 +31,11 @@ public class Bill implements Serializable {
     public String publicID; // The actual government ID of the bill
 
     public ArrayList<String> sources = new ArrayList<>(); // URLs for source docs
+
+    @Override
+    public int compareTo(Bill bill) {
+        return time.compareTo(bill.time);
+    }
 
     private interface JSONAttempt {
         void attempt() throws JSONException;
@@ -53,11 +62,20 @@ public class Bill implements Serializable {
         }, () -> {
             action = "";
         });
+        final String[] timeString = new String[1];
+
         parseJSON(() -> {
-            time = rawBill.getString("latest_action_date");
+            timeString[0] = rawBill.getString("latest_action_date");
         }, () -> {
-            time = "";
+            timeString[0] = "01/01/1900";
         });
+
+        try {
+            time = new SimpleDateFormat("yyyy-MM-dd").parse(timeString[0].substring(0, 10));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         parseJSON(() -> {
             title = rawBill.getString("title");
         }, () -> {
@@ -102,7 +120,13 @@ public class Bill implements Serializable {
             }
         }
         String y1 = title.substring(0,i);
-        String y2 = title.substring(i+2);
+        String y2;
+        try {
+            y2 = title.substring(i+2);
+        } catch (StringIndexOutOfBoundsException e) {
+            y2 = "None";
+        }
+
         title = y1;
         summary = "Summary: " + y2;
         publicID = "Bill ID: " + publicID;

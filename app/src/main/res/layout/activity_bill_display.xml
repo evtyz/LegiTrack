@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BillDisplay"
+    android:background="#D4F8DE"
     android:orientation="vertical"
-    android:background="#D4F8DE">
+    tools:context=".BillDisplay">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="10dp">
-        <TextView
-            android:layout_gravity="center"
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bill_display"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/black"
-            android:textColorHint="@color/black"
-            android:textColorLink="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="16dp"
+        android:text="@string/bill_display"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="45dp"
+        tools:layout_conversion_absoluteWidth="226dp" />
 
-        <TextView
-            android:layout_gravity="center"
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/underline"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/black"
-            android:textColorHighlight="@color/black"
-            android:textColorHint="@color/black"
-            android:textColorLink="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="294dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="52dp"
+        android:scrollbarThumbHorizontal="@color/black"
+        android:text="@string/underline"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="30dp"
+        tools:layout_conversion_absoluteWidth="168dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingHorizontal="20dp" />
+        android:layout_width="420dp"
+        android:layout_height="617dp"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_conversion_absoluteHeight="160dp"
+        tools:layout_conversion_absoluteWidth="411dp" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,4 +60,10 @@ public class BillInfo extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void viewComments(View view) {
+        Intent intent = new Intent(getApplicationContext(), ViewComments.class);
+        startActivity(intent);
+
+    }
 }
